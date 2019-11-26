@@ -1,35 +1,27 @@
-import React from 'react';
-import clrx from 'clsx';
+import React, { useState } from 'react';
 
-import { Theme } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { Typography } from "@material-ui/core";
 
-import { Typography, AppBar, Toolbar, IconButton } from '@material-ui/core';
-import { Search as SearchIcon } from '@material-ui/icons';
+import { MainAppBar, MainDrawer } from './components';
 
-const style = makeStyles((theme: Theme) =>
-  createStyles({
-    title: {
-      flexGrow: 1,
-    },
-  })
-);
+const drawerWidth = 600;
 
 const App = () => {
-  const classes = style();
+  const [isDrawerOpend, setDrawerStatus] = useState(false);
 
   return (
     <div>
-      <AppBar position="fixed">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            전국 프로듀서 노래자랑 시청자 투표 페이지
-          </Typography>
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <MainAppBar onClick={() => setDrawerStatus(true)} />
+      <MainDrawer isOpend={isDrawerOpend} onClick={() => setDrawerStatus(false)} drawerWidth={drawerWidth}>
+        <div>
+          <h1>It will be a search component</h1>
+        </div>
+      </MainDrawer>
+      <main>
+        <Typography paragraph>
+          This is Test Paragraph
+        </Typography>
+      </main>
     </div>
   );
 };
