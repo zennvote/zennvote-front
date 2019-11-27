@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import { Typography } from "@material-ui/core";
 
-import { MainAppBar, MainDrawer } from './components';
+import { MainAppBar } from './components';
+import { MainDrawer } from './containers';
 
 const drawerWidth = 600;
 
@@ -12,11 +13,7 @@ const App = () => {
   return (
     <div>
       <MainAppBar onClick={() => setDrawerStatus(true)} />
-      <MainDrawer isOpend={isDrawerOpend} onClick={() => setDrawerStatus(false)} drawerWidth={drawerWidth}>
-        <div>
-          <h1>It will be a search component</h1>
-        </div>
-      </MainDrawer>
+      <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
       <main>
         <Typography paragraph>
           This is Test Paragraph
