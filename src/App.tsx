@@ -8,7 +8,7 @@ import { MainDrawer } from './containers';
 const drawerWidth = 600;
 
 const App = () => {
-  const [isDrawerOpend, setDrawerStatus] = useState(false);
+  const [isDrawerOpend, setDrawerStatus] = useState(true);
 
   return (
     <div>

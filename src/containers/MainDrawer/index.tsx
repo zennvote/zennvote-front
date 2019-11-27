@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
-import { MainDrawer as MainDrawerComponent } from '../../components';
+import { MainDrawer as MainDrawerComponent, DrawerTabs } from '../../components';
 
 interface MainDrawerInterface {
   drawerWidth: number;
@@ -8,12 +8,18 @@ interface MainDrawerInterface {
   onClose: () => void;
 }
 
+const tabs = [
+  <h1>This is find tab 1</h1>,
+  <h1>This is find tab 2</h1>
+];
+
 const MainDrawer: FC<MainDrawerInterface> = ({ drawerWidth, isOpend, onClose }) => {
+  const [currentTab, setCurrentTab] = useState(0);
+
   return (
     <MainDrawerComponent isOpend={ isOpend } onClick={onClose} drawerWidth={ drawerWidth }>
-      <div>
-        <h1>It will be a search component</h1>
-      </div>
+      <DrawerTabs onChange={(n) => setCurrentTab(n)} />
+      { tabs[currentTab] }
     </MainDrawerComponent>
   );
 }
