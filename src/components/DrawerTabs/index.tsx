@@ -1,5 +1,4 @@
-import Recat, { FC, useState } from "react";
-import React from "react";
+import React, { FC, useState } from "react";
 import { Tab, Tabs } from "@material-ui/core";
 
 interface DrawerTabsProps {
