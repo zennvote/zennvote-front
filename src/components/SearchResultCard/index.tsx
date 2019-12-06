@@ -20,12 +20,14 @@ const SearchResultCard: FC<SearchResultCardProps> = ({info: { episode, index, so
         <Typography variant="h5" component="h2">
           {song}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography  color="textSecondary">
           {producer}
         </Typography>
-        <Typography variant="body2" component="p" color="primary">
-          { votable ? '투표 가능곡' : '투표 불가능곡' }
+        { votable !== undefined &&
+        <Typography className={classes.pos} variant="body2" component="p" color="primary">
+          {votable ? '투표 가능곡' : '투표 불가능곡'}
         </Typography>
+        }
       </CardContent>
     </Card>
   );

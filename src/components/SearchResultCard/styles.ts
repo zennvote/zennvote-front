@@ -19,7 +19,7 @@ const styles = () => makeStyles((theme: Theme) =>
       fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+      marginTop: 12,
     },
   })
 )();

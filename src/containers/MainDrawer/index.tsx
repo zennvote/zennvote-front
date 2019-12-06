@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { MainDrawer as MainDrawerComponent, DrawerTabs, EpisodeSearchPage } from '../../components';
+import { MainDrawer as MainDrawerComponent, DrawerTabs, EpisodeSearchPage, ProducerSearchPage } from '../../components';
 
 interface MainDrawerInterface {
   drawerWidth: number;
@@ -10,7 +10,7 @@ interface MainDrawerInterface {
 
 const tabs = [
   <EpisodeSearchPage />,
-  <h1>This is find tab 2</h1>
+  <ProducerSearchPage />,
 ];
 
 const MainDrawer: FC<MainDrawerInterface> = ({ drawerWidth, isOpend, onClose }) => {

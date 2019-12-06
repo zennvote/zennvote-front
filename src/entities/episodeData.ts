@@ -3,5 +3,5 @@ export interface EpisodeData {
   index: number;
   song: string;
   producer: string;
-  votable: boolean;
+  votable?: boolean;
 }

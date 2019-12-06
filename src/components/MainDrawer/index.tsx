@@ -17,8 +17,8 @@ const MainDrawer: FC<MainDrawerProps> = ({ children, drawerWidth, isOpend, onCli
   return (
     <Drawer className={classes.drawer} variant="persistent" anchor="right" open={isOpend} classes={{ paper: classes.drawerPaper}}>
       <div className={classes.drawerHeader}>
-        <IconButton>
-          <ChevronLeftIcon onClick={ onClick }/>
+        <IconButton onClick={ onClick }>
+          <ChevronLeftIcon/>
         </IconButton>
       </div>
       <Divider />

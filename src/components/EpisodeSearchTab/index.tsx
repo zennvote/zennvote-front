@@ -21,7 +21,6 @@ const EpisodeSearchTab: FC<EpisodeSearchTabProps> = ({ onSearch }) => {
       params: { episode, index },
     });
 
-    console.log(data);
     onSearch(data as EpisodeData);
   };
 
