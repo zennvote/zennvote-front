@@ -9,6 +9,7 @@ import { InfoStep } from '../../containers';
 interface MainStepperProps { }
 
 const steps: PageStepData[] = [
+  { title: '투표 안내', content: <InfoStep /> },
 ]
 
 const MainStepper: FC<MainStepperProps> = () => {
