@@ -7,6 +7,7 @@ import ProducerSearchTab from './ProducerSearchTab';
 import ProducerSearchPage from './ProducerSearchPage';
 import SearchResultCard from './SearchResultCard';
 import ProducerSearchBar from './ProducerSearchBar';
+import MainStepper from './MainStepper';
 
 export {
   MainAppBar,
@@ -18,4 +19,5 @@ export {
   ProducerSearchPage,
   SearchResultCard,
   ProducerSearchBar,
+  MainStepper,
 }
