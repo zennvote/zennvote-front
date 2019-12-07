@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import styles from "./styles";
 import axios from 'axios';
-import { SearchResultCard, ProducerSearchTab, ProducerSearchBar } from "..";
+import { SearchResultCard, ProducerSearchBar } from "..";
 import { Divider } from "@material-ui/core";
 import { EpisodeData } from "../../entities/episodeData";
 

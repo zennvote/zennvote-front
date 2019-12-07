@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { Stepper, Step, StepLabel, Typography, StepContent, Button, Divider } from '@material-ui/core';
+import { Stepper, Step, StepLabel, Typography, StepContent, Button } from '@material-ui/core';
 
 import styles from './styles'
 import { PageStepData } from '../../entities/PageStepData';
@@ -15,10 +15,6 @@ const steps: PageStepData[] = [
 const MainStepper: FC<MainStepperProps> = () => {
   const classes = styles();
   const [activeStep, setActiveStep] = useState(0);
-
-  const NextButtonHandler = () => {
-    setActiveStep(activeStep + 1);
-  };
 
   return (
     <Stepper activeStep={activeStep} orientation="vertical">

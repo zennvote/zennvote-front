@@ -1,10 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import axios from 'axios';
 
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import styles from './styles'
-import { Paper, IconButton, TextField } from '@material-ui/core';
+import { IconButton, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { EpisodeData } from '../../entities/episodeData';
 

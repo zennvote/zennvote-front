@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Typography, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 import { MainAppBar, MainStepper } from './components';
 import { MainDrawer } from './containers';

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Card, CardContent, Typography, CardActions, Button } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 
 import styles from "./styles";
 import { EpisodeData } from "../../entities/episodeData";
