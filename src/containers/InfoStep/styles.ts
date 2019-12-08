@@ -12,6 +12,11 @@ const styles = () => makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(5),
       marginRight: theme.spacing(5),
     },
+    textfield: {
+      width: '100%',
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
+    },
   })
 )();
 
