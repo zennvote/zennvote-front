@@ -5,14 +5,6 @@ const styles = () => makeStyles((theme: Theme) =>
     labelTypo: {
       marginLeft: 10,
     },
-    actionRoot: {
-      display: 'flex',
-      marginTop: theme.spacing(3),
-      justifyContent: 'flex-end'
-    },
-    button: {
-      marginRight: theme.spacing(2),
-    }
   })
 )();
 

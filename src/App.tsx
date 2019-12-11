@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { Container } from "@material-ui/core";
 
-import { MainAppBar, MainStepper } from './components';
-import { MainDrawer } from './containers';
+import { MainAppBar } from './components';
+import { MainDrawer, MainStepper } from './containers';
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 

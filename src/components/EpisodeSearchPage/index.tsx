@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import styles from "./styles";
 import { EpisodeSearchTab, SearchResultCard } from "..";
 import { Divider, LinearProgress, Typography } from "@material-ui/core";
-import { EpisodeData } from "../../entities/episodeData";
+import { EpisodeData } from "../../entities/EpisodeData";
 
 interface EpisodeSearchPageProps { }
 

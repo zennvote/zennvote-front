@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import SearchIcon from '@material-ui/icons/Search';
 import styles from "./styles";
-import { EpisodeData } from "../../entities/episodeData";
+import { EpisodeData } from "../../entities/EpisodeData";
 
 interface EpisodeSearchTabProps {
   onSearch: (info: EpisodeData) => void;

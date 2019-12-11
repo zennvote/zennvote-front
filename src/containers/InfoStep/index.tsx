@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { Typography, Divider, TextField } from '@material-ui/core';
+import { Typography, Divider, TextField, Button } from '@material-ui/core';
 import styles from './styles';
 
-interface InfoStepProps { test?: () => void; }
+interface InfoStepProps {
+  onNextStep: () => void;
+}
 
-const InfoStep: FC<InfoStepProps> = () => {
+const InfoStep: FC<InfoStepProps> = ({ onNextStep }) => {
   const classes = styles();
   return (
     <div>
@@ -30,6 +32,11 @@ const InfoStep: FC<InfoStepProps> = () => {
         이 메일주소로 음원 다운로드 링크가 제공됩니다!
       </Typography>
       <TextField className={classes.textfield} type="text" label="이메일을 입력하세요" />
+      <div className={classes.actionRoot}>
+        <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
+          다음
+        </Button>
+      </div>
     </div>
   )
 };

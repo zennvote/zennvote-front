@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
 import styles from "./styles";
-import { EpisodeData } from "../../entities/episodeData";
+import { EpisodeData } from "../../entities/EpisodeData";
 
 interface SearchResultCardProps {
   info: EpisodeData;

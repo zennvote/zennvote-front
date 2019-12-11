@@ -6,21 +6,33 @@ import { Search as SearchIcon } from '@material-ui/icons';
 import styles from './styles'
 import { IconButton, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-import { EpisodeData } from '../../entities/episodeData';
+import { EpisodeData } from '../../entities/EpisodeData';
 
 interface ProducerSearchBarProps {
   producers: string[];
   onSearch: (producer: string, infos: EpisodeData[]) => void;
+  onStartSearch: () => void;
+  onError: (message: string) => void;
 }
 
-const ProducerSearchBar: FC<ProducerSearchBarProps> = ({ producers, onSearch }) => {
+const ProducerSearchBar: FC<ProducerSearchBarProps> = ({ producers, onSearch, onStartSearch, onError }) => {
   const classes = styles();
   const [producer, setProducer] = useState('');
 
   const handleOnSearch = async () => {
-    const { data: { episodes } } = await axios.get('http://localhost:3000/api/episode/producer', { params: { producer } });
-    
-    onSearch(producer, episodes);
+    onStartSearch();
+    try {
+      const { data: { episodes } } = await axios.get('http://localhost:3000/api/episode/producer', {
+        params: { producer }
+      });
+
+      onSearch(producer, episodes);
+    } catch ({ response: { status }}) {
+      switch(status) {
+        default:
+          onError('알 수 없는 에러가 발생했습니다. 다시 시도해주세요!');
+      }
+    }
   };
   
   return (
