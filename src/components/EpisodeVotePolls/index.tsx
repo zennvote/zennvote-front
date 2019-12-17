@@ -1,39 +1,32 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
 import VoteElement from './VoteElement';
 import { EpisodeData } from '../../entities/EpisodeData';
+import Vote from './Vote';
 
 interface EpisodeVotePollsProps {
+  count: number;
 }
 
-const EpisodeVotePolls: FC<EpisodeVotePollsProps> = () => {
+const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
   const classes = styles();
+  const [votes, setVotes] = useState<Vote[]>([]);
 
-  const samples: EpisodeData[] = [
-    {
-      episode: 82,
-      index: 3,
-      song: '첫사랑 ~4장 운명의 이브~',
-      producer: '프롬',
-    },
-    {
-      episode: 83,
-      index: 14,
-      song: '♡Cupids!',
-      producer: '흰수염',
-    },
-    {
-      episode: 84,
-      index: 4,
-      song: '너의 곁에서 계속 [영상]',
-      producer: 'M+(마스터 플러스)(MA가렛+플루)',
-    },
-  ]
+  const handleVoteChange = (index: number, vote: Vote) => {
+    const newVotes = votes.slice();
+    newVotes[index] = vote;
+    setVotes(newVotes);
+  };
+
+  useEffect(() => {
+    console.log(votes);
+  }, [votes]);
+
   return (
     <div>
-      <VoteElement episodeData={samples[0]}/>
-      <VoteElement episodeData={samples[1]}/>
-      <VoteElement episodeData={samples[2]}/>
+    {
+      [...Array(count).keys()].map((index: number) => <VoteElement key={index} index={count} onChanged={handleVoteChange} />)
+    }
     </div>
   )
 };
