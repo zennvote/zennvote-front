@@ -26,7 +26,7 @@ const ProducerSearchPage: FC<ProducerSearchPageProps> = () => {
 
   useEffect(() => {
     axios
-    .get('http://localhost:3000/api/producers')
+    .get(`${process.env.REACT_APP_API_ROOT_URL}/producers`)
     .then(({ data }) => {
       setProducers(data);
     });

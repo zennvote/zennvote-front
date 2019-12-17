@@ -14,7 +14,7 @@ const QuizContainer: FC<QuizContainerProps> = () => {
   const [quizzes, setQuizes] = useState<QuizData[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/quiz')
+    axios.get(`${process.env.REACT_APP_API_ROOT_URL}/quiz`)
     .then(({ data }) => setQuizes(data));
 
   }, []);

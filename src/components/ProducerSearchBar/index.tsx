@@ -22,7 +22,7 @@ const ProducerSearchBar: FC<ProducerSearchBarProps> = ({ producers, onSearch, on
   const handleOnSearch = async () => {
     onStartSearch();
     try {
-      const { data: { episodes } } = await axios.get('http://localhost:3000/api/episode/producer', {
+      const { data: { episodes } } = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode/producer`, {
         params: { producer }
       });
 
