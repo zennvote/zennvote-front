@@ -21,7 +21,7 @@ const EpisodeSearchTab: FC<EpisodeSearchTabProps> = ({ onSearch, onStartSearch, 
   const handleClick = async () => {
     onStartSearch();
     try {
-      const { data } = await axios.get('http://localhost:3000/api/episode', {
+      const { data } = await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode`, {
         params: { episode, index },
       });
 
