@@ -19,13 +19,11 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
       <Typography variant="h6" className={classes.subtitle}>
         <b>투표하면 안 되는 대상</b>
       </Typography>
-      <Typography>
-        <ol>
-          <li>1회~80회(이전 시즌) 출연자</li>
-          <li>큐에, 라일락, 류드, 처빕, 아토, 초코, 엔류, 모함과, 태민 및 이 아홉이 참여한 유닛</li>
-          <li>오프닝</li>
-        </ol>
-      </Typography>
+      <ol>
+        <li><Typography>1회~80회(이전 시즌) 출연자</Typography></li>
+        <li><Typography>큐에, 라일락, 류드, 처빕, 아토, 초코, 엔류, 모함과, 태민 및 이 아홉이 참여한 유닛</Typography></li>
+        <li><Typography>오프닝</Typography></li>
+      </ol>
       <Divider className={classes.divider} />
       <FieldVoteCard />
       <div className={classes.actionRoot}>
