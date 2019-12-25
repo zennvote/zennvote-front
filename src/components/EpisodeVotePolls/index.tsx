@@ -5,9 +5,10 @@ import { EpisodeData } from '../../entities/EpisodeData';
 import Vote from './Vote';
 
 interface EpisodeVotePollsProps {
+  count: number;
 }
 
-const EpisodeVotePolls: FC<EpisodeVotePollsProps> = () => {
+const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
   const classes = styles();
   const [votes, setVotes] = useState<Vote[]>([]);
 
@@ -23,11 +24,9 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = () => {
 
   return (
     <div>
-      <VoteElement onChanged={handleVoteChange} />
-      <VoteElement onChanged={handleVoteChange} />
-      <VoteElement onChanged={handleVoteChange} />
-      <VoteElement onChanged={handleVoteChange} />
-      <VoteElement onChanged={handleVoteChange} />
+    {
+      [...Array(count).keys()].map((index: number) => <VoteElement key={index} index={count} onChanged={handleVoteChange} />)
+    }
     </div>
   )
 };

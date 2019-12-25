@@ -25,7 +25,7 @@ const FieldVoteCard: FC<FieldVoteCardProps> = () => {
           <b>타부문과 중복투표 불가</b>
         </Typography>
         <Divider className={classes.divider}/>
-        <EpisodeVotePolls />
+        <EpisodeVotePolls count={5} />
       </CardContent>
     </Card>
   )
