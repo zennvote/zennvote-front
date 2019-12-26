@@ -1,31 +1,29 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { FieldVoteCard } from '../../components';
+import { FieldVoteCard, PopVoteCard } from '../../components';
 
-interface FieldVoteStepProps {
+interface PopVoteStepProps {
   onNextStep: () => void;
 }
 
-const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
+const PopVoteStep: FC<PopVoteStepProps> = ({ onNextStep }) => {
   const classes = styles();
   return (
     <div>
-      <Typography className={classes.typo}>
-        인기상, 대상을 정하기 전에 총 <b>5개의 부문</b>이 있습니다.
-        <br />여기서는 닉네임이 아니라 회차와 번호로 투표합니다.
+      <Typography className={classes.infoTypo}>
+        지난 시즌 대상 <b>태민</b>, 명예 프로듀서인 <b>라일락P와 큐에P, 류드P, 처빕P, 아토P, 초코와 EnRyu, 모함과님</b>
+        <br />
+        그리고 이분들이 <b>참여한 유닛</b>은 투표 대상이 <b>아닙니다</b>.
       </Typography>
       <Divider className={classes.divider} />
-      <Typography variant="h6" className={classes.subtitle}>
-        <b>투표하면 안 되는 대상</b>
+      <Typography >
+        앞서 부문에서 투표했던 프로듀서를 여기에서는 다시 투표 가능합니다.
+        <br />
+        중복은 부문상에서만 안 되는 거예요~
       </Typography>
-      <ol>
-        <li><Typography>1회~80회(이전 시즌) 출연자</Typography></li>
-        <li><Typography>큐에, 라일락, 류드, 처빕, 아토, 초코, 엔류, 모함과, 태민 및 이 아홉이 참여한 유닛</Typography></li>
-        <li><Typography>오프닝</Typography></li>
-      </ol>
       <Divider className={classes.divider} />
-      <FieldVoteCard />
+      <PopVoteCard />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
@@ -35,4 +33,4 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
   )
 };
 
-export default FieldVoteStep;
+export default PopVoteStep;

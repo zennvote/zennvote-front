@@ -8,6 +8,7 @@ import SearchResultCard from './SearchResultCard';
 import ProducerSearchBar from './ProducerSearchBar';
 import FieldVoteCard from './FieldVoteCard';
 import EpisodeVotePolls from './EpisodeVotePolls';
+import PopVoteCard from './PopVoteCard';
 
 export {
   MainAppBar,
@@ -20,4 +21,5 @@ export {
   ProducerSearchBar,
   FieldVoteCard,
   EpisodeVotePolls,
+  PopVoteCard,
 }
