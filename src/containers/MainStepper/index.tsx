@@ -6,13 +6,13 @@ import styles from './styles'
 import { PageStepData } from '../../entities/PageStepData';
 import { InfoStep, QuizStep } from '..';
 import FieldVoteStep from '../FieldVoteStep';
-import PopVoteStep from '../FieldVoteStep';
+import PopVoteStep from '../PopVoteStep';
 
 interface MainStepperProps { }
 
 const MainStepper: FC<MainStepperProps> = () => {
   const classes = styles();
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
 
   const steps = useMemo<PageStepData[]>(() => [
     { title: '투표 안내', content: <InfoStep onNextStep={() => setActiveStep(activeStep + 1)} /> },

@@ -2,6 +2,11 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const styles = () => makeStyles((theme: Theme) =>
   createStyles({
+    infoTypo: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      textAlign: 'center',
+    },
     typo: {
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
