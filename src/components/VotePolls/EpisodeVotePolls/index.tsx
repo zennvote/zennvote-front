@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
 import VoteElement from './VoteElement';
-import { EpisodeData } from '../../entities/EpisodeData';
+import { EpisodeData } from '../../../entities/EpisodeData';
 import Vote from './Vote';
 
 interface EpisodeVotePollsProps {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
-import { EpisodeVotePolls } from '..';
+import { EpisodeVotePolls, SelectVotePolls } from '..';
 
 interface PopVoteCardProps {
 }
@@ -27,6 +27,7 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
           <br />여기엔 회차별 순간순간의 감동이나 웃음, <b>나의 팬심</b>을 좀 더 담고, 대상에는 각 회차의 시즌 대상을 탈 만한 활약을 보인 프로듀서님을 총체적으로 판단하여 투표바랍니다 : )
         </Typography>
         <Divider className={classes.divider}/>
+        <SelectVotePolls choices={['test', 'test2', 'test3']} />
       </CardContent>
     </Card>
   )
