@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
-import { EpisodeVotePolls, SelectVotePolls } from '..';
+import { EpisodeVotePolls, SelectVotePolls } from '../..';
 
 interface PopVoteCardProps {
 }
@@ -9,7 +9,7 @@ interface PopVoteCardProps {
 const PopVoteCard: FC<PopVoteCardProps> = () => {
   const classes = styles();
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent className={classes.root}>
         <Typography color="textSecondary" className={classes.subtitle}>
           첫번째 부문

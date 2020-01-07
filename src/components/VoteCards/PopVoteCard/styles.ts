@@ -2,6 +2,9 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const styles = () => makeStyles((theme: Theme) =>
   createStyles({
+    card: {
+      marginBottom: theme.spacing(2),
+    },
     root: {
       padding: theme.spacing(4),
     },

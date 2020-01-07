@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { PopVoteCard } from '../../components';
+import { PopVoteCard, RookieVoteCard } from '../../components';
 
 interface PopVoteStepProps {
   onNextStep: () => void;
@@ -24,6 +24,7 @@ const PopVoteStep: FC<PopVoteStepProps> = ({ onNextStep }) => {
       </Typography>
       <Divider className={classes.divider} />
       <PopVoteCard />
+      <RookieVoteCard />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
