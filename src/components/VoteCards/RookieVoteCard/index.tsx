@@ -27,7 +27,7 @@ const RookieVoteCard: FC<RookieVoteCardProps> = () => {
           나와 사전에 아는 사람이었다거나 하는 부차적인 이유가 고려되지 않았으면 합니다!
         </Typography>
         <Divider className={classes.divider}/>
-        <SelectVotePolls choices={['test', 'test2', 'test3']} />
+        <SelectVotePolls choices={['test', 'test2', 'test3']} minimum={2} count={3} />
       </CardContent>
     </Card>
   )
