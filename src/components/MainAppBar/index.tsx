@@ -16,7 +16,7 @@ const MainAppBar: FC<MainAppBarProps> = ({ onClick }) => {
     <AppBar className={classes.appBar} position="fixed">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          TITLE
+          전국 프로듀서 노래자랑 시즌 9 시청자 투표
         </Typography>
         <IconButton color="inherit" onClick={ onClick }>
           <SearchIcon />

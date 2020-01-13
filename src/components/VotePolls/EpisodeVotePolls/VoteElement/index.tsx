@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Typography, TextField } from '@material-ui/core';
 import styles from './styles';
-import { EpisodeData } from '../../../entities/EpisodeData';
+import { EpisodeData } from '../../../../entities/EpisodeData';
 import Vote from '../Vote';
 
 interface VoteElementProps {

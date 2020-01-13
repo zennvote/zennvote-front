@@ -1,7 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import styles from './styles';
 import VoteElement from './VoteElement';
-import { EpisodeData } from '../../entities/EpisodeData';
 import Vote from './Vote';
 
 interface EpisodeVotePollsProps {
@@ -9,7 +7,6 @@ interface EpisodeVotePollsProps {
 }
 
 const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
-  const classes = styles();
   const [votes, setVotes] = useState<Vote[]>([]);
 
   const handleVoteChange = (index: number, vote: Vote) => {

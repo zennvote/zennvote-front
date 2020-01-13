@@ -6,8 +6,15 @@ import EpisodeSearchPage from './EpisodeSearchPage';
 import ProducerSearchPage from './ProducerSearchPage';
 import SearchResultCard from './SearchResultCard';
 import ProducerSearchBar from './ProducerSearchBar';
-import FieldVoteCard from './FieldVoteCard';
-import EpisodeVotePolls from './EpisodeVotePolls';
+
+import FieldVoteCard from './VoteCards/FieldVoteCard';
+import PopVoteCard from './VoteCards/PopVoteCard';
+import RookieVoteCard from './VoteCards/RookieVoteCard';
+import GrowVoteCard from './VoteCards/GrowVoteCard';
+import UnitVoteCard from './VoteCards/UnitVoteCard';
+
+import EpisodeVotePolls from './VotePolls/EpisodeVotePolls';
+import SelectVotePolls from './VotePolls/SelectVotePolls';
 
 export {
   MainAppBar,
@@ -18,6 +25,13 @@ export {
   ProducerSearchPage,
   SearchResultCard,
   ProducerSearchBar,
+  
   FieldVoteCard,
+  PopVoteCard,
+  RookieVoteCard,
+  GrowVoteCard,
+  UnitVoteCard,
+  
   EpisodeVotePolls,
+  SelectVotePolls,
 }
