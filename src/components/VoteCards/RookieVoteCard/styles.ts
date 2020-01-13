@@ -22,6 +22,13 @@ const styles = () => makeStyles((theme: Theme) =>
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
     },
+    progress: {
+      margin: theme.spacing(2),
+    },
+    selectRoot: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   })
 )();
 

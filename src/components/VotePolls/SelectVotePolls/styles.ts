@@ -4,6 +4,7 @@ const styles = () => makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      width: '100%',
     },
     select: {
       width: '100%',

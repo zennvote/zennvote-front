@@ -4,16 +4,16 @@ import { Select, MenuItem } from '@material-ui/core';
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
-  minimum?: number;
   count: number;
   onChange?: (selected: any[]) => void;
 }
 
-const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, minimum, count, onChange }) => {
+const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange }) => {
   const classes = styles();
-  const [selected, setSelected] = useState<any[]>(new Array(choices.length).fill(''));
+  const [selected, setSelected] = useState<any[]>(new Array(count).fill(''));
 
   useEffect(() => {
+    console.log(selected);
     if (onChange) onChange(selected.filter(x => x !== ''));
   }, [selected])
 

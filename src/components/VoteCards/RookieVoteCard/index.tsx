@@ -1,13 +1,31 @@
-import React, { FC } from 'react';
-import { Typography, Card, CardContent, Divider } from '@material-ui/core';
+import React, { FC, useState, useEffect } from 'react';
+import { Typography, Card, CardContent, Divider, CircularProgress } from '@material-ui/core';
 import styles from './styles';
 import { EpisodeVotePolls, SelectVotePolls } from '../..';
+import axios from 'axios';
 
 interface RookieVoteCardProps {
 }
 
 const RookieVoteCard: FC<RookieVoteCardProps> = () => {
   const classes = styles();
+  const [selects, setSelects] = useState<string[]>([]);
+  const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
+  
+  useEffect(() => {
+    axios
+    .get(`http://vote020.dev-shift.me/api/choices/new`)
+    .then(({ data }) => setCandidates(data));
+  }, [])
+
+  useEffect(() => {
+    console.log(selects);
+  }, [selects]);
+
+  const handlePollsChange = (arr: any[]) => {
+    setSelects(arr);
+  };
+
   return (
     <Card className={classes.card}>
       <CardContent className={classes.root}>
@@ -27,7 +45,13 @@ const RookieVoteCard: FC<RookieVoteCardProps> = () => {
           나와 사전에 아는 사람이었다거나 하는 부차적인 이유가 고려되지 않았으면 합니다!
         </Typography>
         <Divider className={classes.divider}/>
-        <SelectVotePolls choices={['test', 'test2', 'test3']} minimum={2} count={3} />
+        <div className={classes.selectRoot}>
+        {
+          candidates ?
+          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} />
+          : <CircularProgress className={classes.progress} />
+        }
+        </div>
       </CardContent>
     </Card>
   )
