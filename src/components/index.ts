@@ -7,7 +7,7 @@ import ProducerSearchPage from './ProducerSearchPage';
 import SearchResultCard from './SearchResultCard';
 import ProducerSearchBar from './ProducerSearchBar';
 
-import FieldVoteCard from './VoteCards/FieldVoteCard';
+import PitchVoteCard from './VoteCards/PitchVoteCard';
 import PopVoteCard from './VoteCards/PopVoteCard';
 import RookieVoteCard from './VoteCards/RookieVoteCard';
 import GrowVoteCard from './VoteCards/GrowVoteCard';
@@ -26,7 +26,7 @@ export {
   SearchResultCard,
   ProducerSearchBar,
   
-  FieldVoteCard,
+  PitchVoteCard,
   PopVoteCard,
   RookieVoteCard,
   GrowVoteCard,

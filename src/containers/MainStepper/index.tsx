@@ -12,7 +12,7 @@ interface MainStepperProps { }
 
 const MainStepper: FC<MainStepperProps> = () => {
   const classes = styles();
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(2);
 
   const steps = useMemo<PageStepData[]>(() => [
     { title: '투표 안내', content: <InfoStep onNextStep={() => setActiveStep(activeStep + 1)} /> },

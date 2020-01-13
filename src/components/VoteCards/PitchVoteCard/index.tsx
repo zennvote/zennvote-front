@@ -3,10 +3,10 @@ import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
 import { EpisodeVotePolls } from '../..';
 
-interface FieldVoteCardProps {
+interface PitchVoteCardProps {
 }
 
-const FieldVoteCard: FC<FieldVoteCardProps> = () => {
+const PitchVoteCard: FC<PitchVoteCardProps> = () => {
   const classes = styles();
   return (
     <Card className={classes.card}>
@@ -31,4 +31,4 @@ const FieldVoteCard: FC<FieldVoteCardProps> = () => {
   )
 };
 
-export default FieldVoteCard;
+export default PitchVoteCard;

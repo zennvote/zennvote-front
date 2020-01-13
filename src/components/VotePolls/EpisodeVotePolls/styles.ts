@@ -2,23 +2,23 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const styles = () => makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    buttonRoot: {
       display: 'flex',
-      alignItems: 'center',
+      justifyContent: 'flex-end',
       margin: theme.spacing(2),
     },
-    textField: {
-      width: 50,
-      margin: `0 10px`,
-      marginBottom: 13,
-      '& input': {
-        fontSize: 20,
-        textAlign: 'center',
-      },
+    buttonWrapper: {
+      position: 'relative',
     },
-    textFieldDesc: {
-      fontSize: 14,
-      marginLeft: theme.spacing(4),
+    button: {
+      marginRight: 0,
+    },
+    progress: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: -12,
+      marginLeft: -12,
     }
   })
 )();
