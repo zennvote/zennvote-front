@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
-import { EpisodeVotePolls } from '..';
+import { EpisodeVotePolls } from '../..';
 
-interface FieldVoteCardProps {
+interface PitchVoteCardProps {
 }
 
-const FieldVoteCard: FC<FieldVoteCardProps> = () => {
+const PitchVoteCard: FC<PitchVoteCardProps> = () => {
   const classes = styles();
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent className={classes.root}>
         <Typography color="textSecondary" className={classes.subtitle}>
           첫번째 부문
@@ -31,4 +31,4 @@ const FieldVoteCard: FC<FieldVoteCardProps> = () => {
   )
 };
 
-export default FieldVoteCard;
+export default PitchVoteCard;
