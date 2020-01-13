@@ -1,6 +1,7 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, ReactComponentElement } from 'react';
 import styles from './styles';
-import { Select, MenuItem } from '@material-ui/core';
+import { Select, MenuItem, IconButton, Snackbar } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
@@ -8,8 +9,41 @@ interface SelectVotePollsProps {
   onChange?: (selected: any[]) => void;
 }
 
+interface ErrorSnackbarProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const ErrorSnackbar: FC<ErrorSnackbarProps> = ({ open, onClose }) => {
+  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    onClose();
+  };
+
+  return (
+    <Snackbar
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      open={open}
+      autoHideDuration={2000}
+      onClose={handleClose}
+      message="중복 선택은 불가능합니다."
+      action={
+        <React.Fragment>
+          <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      }
+    />
+  );
+}
+
 const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange }) => {
   const classes = styles();
+  const [isDuplicated, setDuplicated] = useState<boolean>(false);
   const [selected, setSelected] = useState<any[]>(new Array(count).fill(''));
 
   useEffect(() => {
@@ -19,8 +53,10 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange })
 
   const handleOptionChange = (index: number, event: React.ChangeEvent<{ value: unknown }>) => {
     const { value } = event.target;
-    if (value !== '' && selected.includes(value))
+    if (value !== '' && selected.indexOf(value) > -1 && selected.indexOf(value) !== index) {
+      setDuplicated(true);
       return;
+    }
 
     let newSelected = [...selected];
     newSelected[index] = event.target.value as string;
@@ -43,6 +79,7 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange })
             </Select>
         ))
     }
+      <ErrorSnackbar open={isDuplicated} onClose={() => setDuplicated(false)} />
     </div>
   )
 };
