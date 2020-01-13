@@ -1,44 +1,12 @@
-import React, { FC, useState, useEffect, ReactComponentElement } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
-import { Select, MenuItem, IconButton, Snackbar } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { Select, MenuItem } from '@material-ui/core';
+import ErrorSnackbar from './components/ErrorSnackbar';
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
   count: number;
   onChange?: (selected: any[]) => void;
-}
-
-interface ErrorSnackbarProps {
-  open: boolean;
-  onClose: () => void;
-}
-
-const ErrorSnackbar: FC<ErrorSnackbarProps> = ({ open, onClose }) => {
-  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    onClose();
-  };
-
-  return (
-    <Snackbar
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      open={open}
-      autoHideDuration={2000}
-      onClose={handleClose}
-      message="중복 선택은 불가능합니다."
-      action={
-        <React.Fragment>
-          <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-            <CloseIcon fontSize="small" />
-          </IconButton>
-        </React.Fragment>
-      }
-    />
-  );
 }
 
 const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange }) => {

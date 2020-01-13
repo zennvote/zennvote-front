@@ -1,5 +1,6 @@
 export const polyfill = () => {
     if (!Array.prototype.fill) {
+        /*eslint no-extend-native: "off"*/
         Object.defineProperty(Array.prototype, 'fill', {
         value: function(value: any) {
     
