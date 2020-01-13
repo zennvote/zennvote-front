@@ -6,17 +6,33 @@ interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
   minimum?: number;
   count: number;
+  onChange?: (selected: any[]) => void;
 }
 
-const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, minimum, count }) => {
+const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, minimum, count, onChange }) => {
   const classes = styles();
-  const selected = useState<number[]>([]);
+  const [selected, setSelected] = useState<any[]>(new Array(choices.length).fill(''));
+
+  useEffect(() => {
+    if (onChange) onChange(selected.filter(x => x !== ''));
+  }, [selected])
+
+  const handleOptionChange = (index: number, event: React.ChangeEvent<{ value: unknown }>) => {
+    const { value } = event.target;
+    if (value !== '' && selected.includes(value))
+      return;
+
+    let newSelected = [...selected];
+    newSelected[index] = event.target.value as string;
+    setSelected(newSelected);
+  };
 
   return (
     <div className={classes.root}>
     {
         new Array(count).fill(0).map((_, index) => (
-            <Select key={index} className={classes.select}>
+            <Select key={index} className={classes.select} value={selected[index]} onChange={(e) => handleOptionChange(index, e)}>
+                <MenuItem key='none' value=''>선택 안함</MenuItem>
             {
                 choices.map(x => {
                     if (typeof x === 'string')
