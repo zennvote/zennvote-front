@@ -10,6 +10,7 @@ import ProducerSearchBar from './ProducerSearchBar';
 import FieldVoteCard from './VoteCards/FieldVoteCard';
 import PopVoteCard from './VoteCards/PopVoteCard';
 import RookieVoteCard from './VoteCards/RookieVoteCard';
+import GrowVoteCard from './VoteCards/GrowVoteCard';
 
 import EpisodeVotePolls from './VotePolls/EpisodeVotePolls';
 import SelectVotePolls from './VotePolls/SelectVotePolls';
@@ -27,6 +28,7 @@ export {
   FieldVoteCard,
   PopVoteCard,
   RookieVoteCard,
+  GrowVoteCard,
   
   EpisodeVotePolls,
   SelectVotePolls,
