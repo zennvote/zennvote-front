@@ -1,17 +1,19 @@
 import MainDrawer from "./MainDrawer";
 import MainStepper from "./MainStepper";
-import InfoStep from "./InfoStep";
-import QuizStep from "./QuizStep";
 import QuizContainer from "./QuizContainer";
-import FieldVoteStep from "./FieldVoteStep";
-import PopVoteStep from "./PopVoteStep";
+
+import InfoStep from "./Steps/InfoStep";
+import QuizStep from "./Steps/QuizStep";
+import FieldVoteStep from "./Steps/FieldVoteStep";
+import PopVoteStep from "./Steps/PopVoteStep";
 
 export {
   MainDrawer,
   MainStepper,
+  QuizContainer,
+  
   InfoStep,
   QuizStep,
-  QuizContainer,
   FieldVoteStep,
   PopVoteStep,
 }

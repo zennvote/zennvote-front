@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { PitchVoteCard } from '../../components';
+import { PitchVoteCard } from '../../../components';
 
 interface FieldVoteStepProps {
   onNextStep: () => void;
