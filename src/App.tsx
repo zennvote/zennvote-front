@@ -8,9 +8,10 @@ import { MainDrawer, MainStepper } from './containers';
 import { makeStyles, createStyles, Theme, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { teal } from '@material-ui/core/colors';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import { createStore } from 'redux';
+import rootReducer from './store/modules';
 
-const store = configureStore();
+const store = createStore(rootReducer);
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
