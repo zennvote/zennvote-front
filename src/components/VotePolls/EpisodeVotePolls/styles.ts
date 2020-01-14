@@ -2,6 +2,9 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const styles = () => makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      width: '100%',
+    },
     buttonRoot: {
       display: 'flex',
       justifyContent: 'flex-end',

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Typography, Card, CardContent, Divider, CircularProgress } from '@material-ui/core';
 import styles from './styles';
-import { SelectVotePolls } from '../..';
+import { EpisodeVotePolls } from '../..';
 import axios from 'axios';
 
 interface PopVoteCardProps {
@@ -12,7 +12,6 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
   const [selects, setSelects] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
   
-
   useEffect(() => {
     axios
     .get(`http://vote020.dev-shift.me/api/producers`)
@@ -47,11 +46,7 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
         </Typography>
         <Divider className={classes.divider}/>
         <div className={classes.selectRoot}>
-        {
-          candidates ?
-          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} />
-          : <CircularProgress className={classes.progress} />
-        }
+        <EpisodeVotePolls count={3} />
         </div>
       </CardContent>
     </Card>

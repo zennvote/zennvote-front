@@ -21,7 +21,7 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
       </Typography>
       <ol>
         <li><Typography>1회~80회(이전 시즌) 출연자</Typography></li>
-        <li><Typography>큐에, 라일락, 류드, 처빕, 아토, 초코, 엔류, 모함과, 태민 및 이 아홉이 참여한 유닛</Typography></li>
+        <li><Typography>큐에, 라일락, 류드, 처빕, 아토, 초코, 엔류, 모함과, 히키코모리, 태민 및 이 열명이 참여한 유닛</Typography></li>
         <li><Typography>오프닝</Typography></li>
       </ol>
       <Divider className={classes.divider} />

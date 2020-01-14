@@ -60,7 +60,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
     {
       [...Array(count).keys()].map((index: number) => (
         <VoteElement key={index} index={index} onChanged={handleVoteChange} episodeData={episodes[index] ? episodes[index] : undefined} episodeError={episodeErrors[index]} />
