@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Typography, Divider, TextField, Button } from '@material-ui/core';
 import styles from './styles';
+import { useDispatch } from 'react-redux';
+import { changeVote } from '../../store/modules/vote';
 
 interface InfoStepProps {
   onNextStep: () => void;
@@ -8,6 +10,14 @@ interface InfoStepProps {
 
 const InfoStep: FC<InfoStepProps> = ({ onNextStep }) => {
   const classes = styles();
+  const [email, setEmail] = useState<string>('');
+  const dispatch = useDispatch();
+
+  const handleNextStep = () => {
+    dispatch(changeVote({ email }));
+    onNextStep();
+  }
+
   return (
     <div>
       <Typography className={classes.typo}>
@@ -31,9 +41,9 @@ const InfoStep: FC<InfoStepProps> = ({ onNextStep }) => {
       <Typography className={classes.typo}>
         이 메일주소로 음원 다운로드 링크가 제공됩니다!
       </Typography>
-      <TextField className={classes.textfield} type="text" label="이메일을 입력하세요" />
+      <TextField className={classes.textfield} type="text" label="이메일을 입력하세요" value={email} onChange={({ currentTarget: { value } }) => setEmail(value)}/>
       <div className={classes.actionRoot}>
-        <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
+        <Button className={classes.button} variant="contained" color="primary" onClick={handleNextStep}>
           다음
         </Button>
       </div>
