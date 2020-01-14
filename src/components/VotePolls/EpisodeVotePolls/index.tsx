@@ -15,6 +15,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
   const [votes, setVotes] = useState<Vote[]>(Array(count));
   const [episodes, setEpisodes] = useState<EpisodeData[]>(Array(count));
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [episodeErrors, setEpisodeErrors] = useState<string[]>(Array(count).fill(''));
 
   const handleVoteChange = (index: number, vote: Vote | null) => {
     if (!vote)
@@ -28,15 +29,25 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
   const handleConfirm = () => {
     setLoading(true);
 
-    let newData = episodes.slice();
+    setEpisodeErrors(episodeErrors.fill(''));
     const promises = votes.map((vote, index) => new Promise((resolve) => {
       if (!vote || !vote.episode || !vote.index)
-        return null;
+        return resolve(undefined);
 
       return axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode`, {
         params: { episode: vote.episode, index: vote.index },
       })
-      .then(({ data }) => resolve(data));
+      .then(({ data }) => resolve(data))
+      .catch(({ response }) => {
+        let temp = episodeErrors.slice();
+        switch (response.status) {
+          case 404:
+            temp[index] = '투고 정보가 존재하지 않습니다. 정확한 회차 및 번호를 입력해주세요.';
+            setEpisodeErrors(temp);
+            break;
+        }
+        resolve(undefined);
+      });
     }))
     .filter((promise) => promise !== null);
 
@@ -44,14 +55,15 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
     .then((values) => {
       setEpisodes(values.map(value => value as EpisodeData));
       setLoading(false);
-    });
+    })
+    .catch(() => setLoading(false));
   };
 
   return (
     <div>
     {
       [...Array(count).keys()].map((index: number) => (
-        <VoteElement key={index} index={index} onChanged={handleVoteChange} episodeData={episodes[index] ? episodes[index] : undefined} />
+        <VoteElement key={index} index={index} onChanged={handleVoteChange} episodeData={episodes[index] ? episodes[index] : undefined} episodeError={episodeErrors[index]} />
       ))
     }
       <div className={classes.buttonRoot}>

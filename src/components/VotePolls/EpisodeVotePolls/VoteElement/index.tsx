@@ -8,6 +8,7 @@ interface VoteElementProps {
   index: number;
   episodeData?: EpisodeData;
   onChanged?: (index: number, vote: Vote | null) => void;
+  episodeError?: string;
 }
 
 enum VoteInputError {
@@ -18,10 +19,22 @@ const ValidateVote = (rawEpisode: string, rawIndex: string) : VoteInputError => 
   return VoteInputError.PASS;
 };
 
-const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged }) => {
+const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged, episodeError }) => {
   const classes = styles();
   const [vote, setVote] = useState<Vote | null>(null);
-  const [error, setError] = useState<VoteInputError>(VoteInputError.PASS);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    if (!(episodeData?.votable ?? true)) {
+      setError('투표 불가능한 곡입니다. 다시 확인해주세요.');
+    }
+    else if (episodeData?.episode && episodeData.episode < 81) {
+      setError('지난 시즌의 곡입니다. 다시 확인해주세요.');
+    }
+    else {
+      setError('');
+    }
+  }, [episodeData]);
 
   useEffect(() => {
     if (onChanged)
@@ -45,17 +58,24 @@ const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged }) =>
         <Typography variant="h6">회</Typography>
         <TextField className={classes.textField} type="number" label="번호" onChange={ handleIndexChanged } />
         <Typography variant="h6">번</Typography>
-        { episodeData &&
-          <Typography color="textSecondary" className={classes.textFieldDesc}>
-            <b>{`${episodeData.episode}회 ${episodeData.index}번`}</b> { episodeData.song }
-            <br />by { episodeData.producer }
-          </Typography>
+        {
+          episodeError ?
+          <Typography color="error" className={classes.textFieldDesc}>
+            <b>{ episodeError }</b>
+          </Typography> :
+          (
+            episodeData &&
+            <Typography color="textSecondary" className={classes.textFieldDesc}>
+              <b>{`${episodeData.episode}회 ${episodeData.index}번`}</b> { episodeData.song }
+              <br />by { episodeData.producer }
+            </Typography>
+          )
         }
       </div>
-      { error !== VoteInputError.PASS &&
+      { error &&
       <div className={classes.captionRoot} >
         <Typography variant="caption" color="error">
-          테스트용 Error Text Typography입니다.
+          { error }
         </Typography>
       </div>
       }
