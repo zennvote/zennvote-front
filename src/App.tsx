@@ -5,7 +5,8 @@ import { Container } from "@material-ui/core";
 import { MainAppBar } from './components';
 import { MainDrawer, MainStepper } from './containers';
 
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { teal } from '@material-ui/core/colors';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,6 +16,12 @@ const styles = makeStyles((theme: Theme) =>
   })
 );
 
+const theme = createMuiTheme({
+  palette: {
+    primary: teal,
+  },
+})
+
 const drawerWidth = 550;
 
 const App = () => {
@@ -23,11 +30,13 @@ const App = () => {
 
   return (
     <div>
-      <MainAppBar onClick={() => setDrawerStatus(true)} />
-      <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
-      <Container className={classes.main} maxWidth="md">
-        <MainStepper />
-      </Container>
+      <ThemeProvider theme={theme}>
+        <MainAppBar onClick={() => setDrawerStatus(true)} />
+        <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
+        <Container className={classes.main} maxWidth="md">
+          <MainStepper />
+        </Container>
+      </ThemeProvider>
     </div>
   );
 };
