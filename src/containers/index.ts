@@ -6,6 +6,7 @@ import InfoStep from "./Steps/InfoStep";
 import QuizStep from "./Steps/QuizStep";
 import FieldVoteStep from "./Steps/FieldVoteStep";
 import PopVoteStep from "./Steps/PopVoteStep";
+import ConfirmStep from "./Steps/ConfirmStep";
 
 export {
   MainDrawer,
@@ -16,4 +17,5 @@ export {
   QuizStep,
   FieldVoteStep,
   PopVoteStep,
+  ConfirmStep,
 }

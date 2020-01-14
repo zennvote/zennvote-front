@@ -3,10 +3,12 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 const styles = () => makeStyles((theme: Theme) =>
   createStyles({
     typo: {
+      textAlign: 'center',
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
     },
     subtitle: {
+      textAlign: 'center',
       marginBottom: -theme.spacing(1)
     },
     divider: {

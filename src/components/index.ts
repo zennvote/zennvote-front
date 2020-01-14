@@ -6,6 +6,7 @@ import EpisodeSearchPage from './EpisodeSearchPage';
 import ProducerSearchPage from './ProducerSearchPage';
 import SearchResultCard from './SearchResultCard';
 import ProducerSearchBar from './ProducerSearchBar';
+import ConfirmList from './ConfirmList';
 
 import PitchVoteCard from './VoteCards/PitchVoteCard';
 import PopVoteCard from './VoteCards/PopVoteCard';
@@ -25,6 +26,7 @@ export {
   ProducerSearchPage,
   SearchResultCard,
   ProducerSearchBar,
+  ConfirmList,
   
   PitchVoteCard,
   PopVoteCard,
