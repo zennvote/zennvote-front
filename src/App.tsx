@@ -7,6 +7,10 @@ import { MainDrawer, MainStepper } from './containers';
 
 import { makeStyles, createStyles, Theme, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { teal } from '@material-ui/core/colors';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +33,7 @@ const App = () => {
   const [isDrawerOpend, setDrawerStatus] = useState(false);
 
   return (
-    <div>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <MainAppBar onClick={() => setDrawerStatus(true)} />
         <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
@@ -37,7 +41,7 @@ const App = () => {
           <MainStepper />
         </Container>
       </ThemeProvider>
-    </div>
+    </Provider>
   );
 };
 
