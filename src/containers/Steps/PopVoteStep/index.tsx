@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { PopVoteCard, RookieVoteCard, GrowVoteCard, UnitVoteCard } from '../../components';
+import { PopVoteCard, RookieVoteCard, GrowVoteCard, UnitVoteCard } from '../../../components';
 
 interface PopVoteStepProps {
   onNextStep: () => void;

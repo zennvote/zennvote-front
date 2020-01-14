@@ -4,9 +4,7 @@ import { Stepper, Step, StepLabel, Typography, StepContent } from '@material-ui/
 
 import styles from './styles'
 import { PageStepData } from '../../entities/PageStepData';
-import { InfoStep, QuizStep } from '..';
-import FieldVoteStep from '../FieldVoteStep';
-import PopVoteStep from '../PopVoteStep';
+import { InfoStep, QuizStep, FieldVoteStep, PopVoteStep } from '..';
 
 interface MainStepperProps { }
 

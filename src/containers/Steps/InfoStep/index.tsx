@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { Typography, Divider, TextField, Button } from '@material-ui/core';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
-import { changeVote } from '../../store/modules/vote';
+import { changeVote } from '../../../store/modules/vote';
 
 interface InfoStepProps {
   onNextStep: () => void;

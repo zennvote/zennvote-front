@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Typography } from '@material-ui/core';
 import styles from './styles';
-import { QuizContainer } from '..';
+import { QuizContainer } from '../..';
 
 interface QuizStepProps {
   onNextStep: () => void;
