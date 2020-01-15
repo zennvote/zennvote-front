@@ -5,9 +5,10 @@ import { QuizContainer } from '../..';
 
 interface QuizStepProps {
   onNextStep: () => void;
+  onPrevStep: () => void;
 }
 
-const QuizStep: FC<QuizStepProps> = ({ onNextStep }) => {
+const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
   return (
     <div>
@@ -27,6 +28,9 @@ const QuizStep: FC<QuizStepProps> = ({ onNextStep }) => {
       </Typography>
       <QuizContainer />
       <div className={classes.actionRoot}>
+        <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
+          이전
+        </Button>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
         </Button>

@@ -5,9 +5,10 @@ import { PitchVoteCard } from '../../../components';
 
 interface FieldVoteStepProps {
   onNextStep: () => void;
+  onPrevStep: () => void;
 }
 
-const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
+const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
   return (
     <div>
@@ -42,6 +43,9 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep }) => {
       <Divider className={classes.divider} />
       <PitchVoteCard />
       <div className={classes.actionRoot}>
+        <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
+          이전
+        </Button>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
         </Button>

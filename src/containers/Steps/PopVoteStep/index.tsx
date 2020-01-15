@@ -5,9 +5,10 @@ import { PopVoteCard, RookieVoteCard, GrowVoteCard, UnitVoteCard } from '../../.
 
 interface PopVoteStepProps {
   onNextStep: () => void;
+  onPrevStep: () => void;
 }
 
-const PopVoteStep: FC<PopVoteStepProps> = ({ onNextStep }) => {
+const PopVoteStep: FC<PopVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
   return (
     <div>
@@ -30,6 +31,9 @@ const PopVoteStep: FC<PopVoteStepProps> = ({ onNextStep }) => {
       <GrowVoteCard />
       <UnitVoteCard />
       <div className={classes.actionRoot}>
+        <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
+          이전
+        </Button>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
         </Button>

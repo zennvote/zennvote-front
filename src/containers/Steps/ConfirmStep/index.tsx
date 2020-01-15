@@ -5,9 +5,10 @@ import { PitchVoteCard, ConfirmList } from '../../../components';
 
 interface ConfirmStepProps {
   onNextStep: () => void;
+  onPrevStep: () => void;
 }
 
-const ConfirmStep: FC<ConfirmStepProps> = ({ onNextStep }) => {
+const ConfirmStep: FC<ConfirmStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
   return (
     <div>
@@ -18,6 +19,9 @@ const ConfirmStep: FC<ConfirmStepProps> = ({ onNextStep }) => {
       <Divider className={classes.divider} />
       <ConfirmList />
       <div className={classes.actionRoot}>
+        <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
+          이전
+        </Button>
         <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
           다음
         </Button>
