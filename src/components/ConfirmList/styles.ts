@@ -24,6 +24,30 @@ const styles = () => makeStyles((theme: Theme) =>
     },
     cardTypo: {
     },
+
+    episodePanel: {
+      width: '100%',
+    },
+    episodeRoot: {
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    episodeItemRoot: {
+      textAlign: 'left',
+      width: '100%',
+      margin: theme.spacing(2),
+    },
+    episodeTitle: {
+      fontSize: theme.typography.pxToRem(15),
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    episodeCardRoot: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(2),
+    }
   })
 )();
 
