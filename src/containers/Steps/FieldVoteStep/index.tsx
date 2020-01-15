@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { PitchVoteCard } from '../../../components';
+import { PitchVoteCard, VoiceVoteCard, FunnyVoteCard, ContentVoteCard, OriginalVoteCard } from '../../../components';
 
 interface FieldVoteStepProps {
   onNextStep: () => void;
@@ -42,6 +42,10 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
       </ol>
       <Divider className={classes.divider} />
       <PitchVoteCard />
+      <VoiceVoteCard />
+      <FunnyVoteCard />
+      <ContentVoteCard />
+      <OriginalVoteCard />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전

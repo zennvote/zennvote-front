@@ -46,7 +46,7 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
         </Typography>
         <Divider className={classes.divider}/>
         <div className={classes.selectRoot}>
-        <EpisodeVotePolls count={3} />
+        <EpisodeVotePolls count={3} onChange={console.log} />
         </div>
       </CardContent>
     </Card>

@@ -8,14 +8,19 @@ import { EpisodeData } from '../../../entities/EpisodeData';
 
 interface EpisodeVotePollsProps {
   count: number;
+  onChange: (values: Vote[]) => void;
 }
 
-const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
+const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
   const classes = styles();
-  const [votes, setVotes] = useState<Vote[]>(Array(count));
-  const [episodes, setEpisodes] = useState<EpisodeData[]>(Array(count));
+  const [votes, setVotes] = useState<Vote[]>(Array(count).fill(undefined));
+  const [episodes, setEpisodes] = useState<EpisodeData[]>(Array(count).fill(undefined));
   const [isLoading, setLoading] = useState<boolean>(false);
   const [episodeErrors, setEpisodeErrors] = useState<string[]>(Array(count).fill(''));
+
+  useEffect(() => {
+    onChange(votes);
+  }, [votes]);
 
   const handleVoteChange = (index: number, vote: Vote | null) => {
     if (!vote)
@@ -31,14 +36,14 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
 
     setEpisodeErrors(episodeErrors.fill(''));
     let temp = episodeErrors.slice();
-    const promises = votes.map((vote, index) => new Promise((resolve) => {
+    const promises = votes.map((vote, index) => new Promise<EpisodeData>((resolve) => {
       if (!vote || !vote.episode || !vote.index)
         return resolve(undefined);
 
       return axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode`, {
         params: { episode: vote.episode, index: vote.index },
       })
-      .then(({ data }) => resolve(data))
+      .then(({ data }) => resolve(data as EpisodeData))
       .catch(({ response }) => {
         if (!response || !response.status) {
           temp[index] = '알 수 없는 오류가 발생했습니다. 다시 한번 시도해주세요.';
@@ -63,7 +68,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
 
     Promise.all(promises)
     .then((values) => {
-      setEpisodes(values.map(value => value as EpisodeData));
+      setEpisodes(values);
       setEpisodeErrors(temp);
       setLoading(false);
     })

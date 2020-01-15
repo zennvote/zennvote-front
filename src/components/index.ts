@@ -9,6 +9,10 @@ import ProducerSearchBar from './ProducerSearchBar';
 import ConfirmList from './ConfirmList';
 
 import PitchVoteCard from './VoteCards/PitchVoteCard';
+import VoiceVoteCard from './VoteCards/VoiceVoteCard';
+import FunnyVoteCard from './VoteCards/FunnyVoteCard';
+import ContentVoteCard from './VoteCards/ContentVoteCard';
+import OriginalVoteCard from './VoteCards/OriginalVoteCard';
 import PopVoteCard from './VoteCards/PopVoteCard';
 import RookieVoteCard from './VoteCards/RookieVoteCard';
 import GrowVoteCard from './VoteCards/GrowVoteCard';
@@ -29,6 +33,10 @@ export {
   ConfirmList,
   
   PitchVoteCard,
+  VoiceVoteCard,
+  FunnyVoteCard,
+  ContentVoteCard,
+  OriginalVoteCard,
   PopVoteCard,
   RookieVoteCard,
   GrowVoteCard,

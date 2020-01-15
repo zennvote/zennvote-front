@@ -3,22 +3,22 @@ import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
 import { EpisodeVotePolls } from '../..';
 
-interface PitchVoteCardProps {
+interface VoiceVoteCardProps {
 }
 
-const PitchVoteCard: FC<PitchVoteCardProps> = () => {
+const VoiceVoteCard: FC<VoiceVoteCardProps> = () => {
   const classes = styles();
   return (
     <Card className={classes.card}>
       <CardContent className={classes.root}>
         <Typography color="textSecondary" className={classes.subtitle}>
-          첫번째 부문
+          두번째 부문
         </Typography>
         <Typography variant="h5" component="h2" className={classes.title}>
-          이 성대가 대단하다! <b>가창력이 뛰어난 프로듀서 상</b>
+          이 목소리 실화..?! <b>멋진 목소리의 프로듀서 상</b>
         </Typography>
         <Typography className={classes.typo}>
-          내 생각에 가장 가창력이 뛰어난 것 같다고 생각하는 프로듀서분을 뽑아주세요.
+          내가 생각하기에 가장 멋지거나 아름답다고 생각하는 목소리를 지닌 프로듀서분을 뽑아주세요.
           <br />최소 1명부터 최대 5명까지 쓰실 수 있습니다.
         </Typography>
         <Typography className={classes.typo}>
@@ -31,4 +31,4 @@ const PitchVoteCard: FC<PitchVoteCardProps> = () => {
   )
 };
 
-export default PitchVoteCard;
+export default VoiceVoteCard;
