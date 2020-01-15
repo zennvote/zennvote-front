@@ -32,10 +32,6 @@ const ProducerSearchPage: FC<ProducerSearchPageProps> = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(results);
-  }, [results]);
-
   return (
     <div className={classes.root}>
       <ProducerSearchBar 

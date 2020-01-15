@@ -17,11 +17,7 @@ const GrowVoteCard: FC<GrowVoteCardProps> = () => {
     axios
     .get(`http://vote020.dev-shift.me/api/choices/grow`)
     .then(({ data }) => setCandidates(data));
-  }, [])
-
-  useEffect(() => {
-    console.log(selects);
-  }, [selects]);
+  }, []);
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);

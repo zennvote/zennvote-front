@@ -16,11 +16,7 @@ const RookieVoteCard: FC<RookieVoteCardProps> = () => {
     axios
     .get(`http://vote020.dev-shift.me/api/choices/new`)
     .then(({ data }) => setCandidates(data));
-  }, [])
-
-  useEffect(() => {
-    console.log(selects);
-  }, [selects]);
+  }, []);
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);

@@ -16,11 +16,7 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
     axios
     .get(`http://vote020.dev-shift.me/api/producers`)
     .then(({ data }) => setCandidates(data));
-  }, [])
-
-  useEffect(() => {
-    console.log(selects);
-  }, [selects]);
+  }, []);
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);

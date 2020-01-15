@@ -17,11 +17,7 @@ const UnitVoteCard: FC<UnitVoteCardProps> = () => {
     axios
     .get(`http://vote020.dev-shift.me/api/choices/unit`)
     .then(({ data }) => setCandidates(data));
-  }, [])
-
-  useEffect(() => {
-    console.log(selects);
-  }, [selects]);
+  }, []);
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);
