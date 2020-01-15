@@ -1,8 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
 import { PitchVoteCard, VoiceVoteCard, FunnyVoteCard, ContentVoteCard, OriginalVoteCard } from '../../../components';
 import Vote from '../../../components/EpisodeVotePolls/Vote';
+import { useSnackbar } from 'notistack';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../store/modules';
+import { changeVote } from '../../../store/modules/vote';
+import { EpisodeData } from '../../../entities/EpisodeData';
 
 interface FieldVoteStepProps {
   onNextStep: () => void;
@@ -19,7 +24,28 @@ interface VoteResult {
 
 const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
+  const vote = useSelector((state: RootState) => state.vote);
+  const dispatch = useDispatch();
+
+  const { enqueueSnackbar } = useSnackbar();
   const [results, setResults] = useState<VoteResult>({});
+
+  const handleNextStep = () => {
+    const { pitch, voice, funny, content, original } = results;
+    if (!pitch || !voice || !funny || !content || !original) {
+      enqueueSnackbar("아직 투표하지 않은 항목이 있습니다. 확인해주세요.", { variant: 'error' });
+      return;
+    }
+    
+    dispatch(changeVote({
+      pitch: pitch as EpisodeData[],
+      voice: voice as EpisodeData[],
+      funny: funny as EpisodeData[],
+      content: content as EpisodeData[],
+      original: original as EpisodeData[],
+    }));
+    onNextStep();
+  };
 
   return (
     <div>
@@ -61,7 +87,7 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전
         </Button>
-        <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
+        <Button className={classes.button} variant="contained" color="primary" onClick={handleNextStep}>
           다음
         </Button>
       </div>
