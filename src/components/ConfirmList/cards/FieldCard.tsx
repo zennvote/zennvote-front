@@ -11,18 +11,16 @@ interface FieldCardProps {
 
 interface ItemProps {
   episodeData: EpisodeData[] | undefined;
-  title: any;
+  title: string;
   classes: any;
 }
 
 const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData }) => {
-  const { episode, index, song, producer, votable } = episodeData ? episodeData[0] : {} as EpisodeData;
-
   return (
     <ExpansionPanel className={classes.episodePanel}>
       <ExpansionPanelSummary>
         <Typography className={classes.episodeTitle}>
-            { title }
+            <b>{ title }</b>
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.episodeRoot}>
@@ -64,7 +62,8 @@ const FieldCard: FC<FieldCardProps> = ({ vote }) => {
           </Typography>
           <Divider className={classes.divider} />
           <div className={classes.episodeRoot}>
-            <EpisodeItem classes={classes} episodeData={pitch} title={<React.Fragment>이 성대가 대단하다! <b>가창력이 뛰어난 프로듀서 상</b></React.Fragment>} />
+            <EpisodeItem classes={classes} episodeData={pitch} title='가창력이 뛰어난 프로듀서 상' />
+            <EpisodeItem classes={classes} episodeData={voice} title='멋진 목소리의 프로듀서 상' />
           </div>
         </CardContent>
     </Card>
