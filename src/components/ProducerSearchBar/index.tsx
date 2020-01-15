@@ -34,6 +34,10 @@ const ProducerSearchBar: FC<ProducerSearchBarProps> = ({ producers, onSearch, on
       }
     }
   };
+
+  const handleChange = (e: any, newValue: string) => {
+    setProducer(newValue);
+  }
   
   return (
     <div className={classes.root}>
@@ -41,7 +45,7 @@ const ProducerSearchBar: FC<ProducerSearchBarProps> = ({ producers, onSearch, on
         className={ classes.input }
         options={ producers }
         getOptionLabel={(option: string) => option}
-        onChange={(e: any) => setProducer(e.currentTarget.innerHTML)}
+        onChange={handleChange}
         renderInput={(params: any) => (
           <TextField {...params} label="프로듀서 이름" fullWidth />
         )}

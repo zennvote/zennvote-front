@@ -3,6 +3,9 @@ import { Button, Typography } from '@material-ui/core';
 import styles from './styles';
 import { QuizContainer } from '../..';
 import { useSnackbar } from 'notistack';
+import { RootState } from '../../../store/modules';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeVote } from '../../../store/modules/vote';
 
 interface QuizStepProps {
   onNextStep: () => void;
@@ -11,9 +14,12 @@ interface QuizStepProps {
 
 const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
-  const [results, setResults] = useState<number[] | undefined>(undefined);
+  
+  const vote = useSelector((state: RootState) => state.vote);
+  const dispatch = useDispatch();
 
   const { enqueueSnackbar } = useSnackbar();
+  const [results, setResults] = useState<number[] | undefined>(undefined);
 
   const handleNextStep = () => {
     if (!results)
@@ -24,6 +30,7 @@ const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
       return;
     }
 
+    dispatch(changeVote({ problem: results }));
     onNextStep()
   };
 
