@@ -40,7 +40,7 @@ const UnitVoteCard: FC<UnitVoteCardProps> = () => {
         <div className={classes.selectRoot}>
         {
           candidates ?
-          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} />
+          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} sizes={[12, 12, 12]} />
           : <CircularProgress className={classes.progress} />
         }
         </div>

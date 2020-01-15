@@ -1,15 +1,18 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
-import { Select, MenuItem } from '@material-ui/core';
+import { Select, MenuItem, Grid } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
+
+type Size = boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined;
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
   count: number;
   onChange?: (selected: any[]) => void;
+  sizes?: Size[];
 }
 
-const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange }) => {
+const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange, sizes }) => {
   const classes = styles();
   const { enqueueSnackbar } = useSnackbar();
   const [selected, setSelected] = useState<any[]>(new Array(count).fill(''));
@@ -31,22 +34,24 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange })
   };
 
   return (
-    <div className={classes.root}>
+    <Grid container className={classes.root} spacing={2}>
     {
         new Array(count).fill(0).map((_, index) => (
-            <Select key={index} className={classes.select} value={selected[index]} onChange={(e) => handleOptionChange(index, e)}>
-                <MenuItem key='none' value=''>선택 안함</MenuItem>
-            {
-                choices.map(x => {
-                    if (typeof x === 'string')
-                        return <MenuItem key={x} value={x}>{x}</MenuItem>
-                    return <MenuItem key={x.value} value={x.value}>{x.name}</MenuItem>
-                })
-            }
-            </Select>
+            <Grid item className={classes.selectGrid} xs={sizes ? sizes[0] : 12} sm={sizes ? sizes[1] : 4} md={sizes ? sizes[2] : 4}>
+              <Select key={index} value={selected[index]} className={classes.select} onChange={(e) => handleOptionChange(index, e)}>
+                  <MenuItem key='none' value=''>선택 안함</MenuItem>
+              {
+                  choices.map(x => {
+                      if (typeof x === 'string')
+                          return <MenuItem key={x} value={x}>{x}</MenuItem>
+                      return <MenuItem key={x.value} value={x.value}>{x.name}</MenuItem>
+                  })
+              }
+              </Select>
+            </Grid>
         ))
     }
-    </div>
+    </Grid>
   )
 };
 
