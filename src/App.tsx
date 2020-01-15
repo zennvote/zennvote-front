@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './store/modules';
+
+import { SnackbarProvider } from 'notistack';
 
 import { Container } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { teal } from '@material-ui/core/colors';
 
 import { MainAppBar } from './components';
 import { MainDrawer, MainStepper } from './containers';
 
-import { makeStyles, createStyles, Theme, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { teal } from '@material-ui/core/colors';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './store/modules';
 
 const store = createStore(rootReducer);
 
@@ -35,13 +37,15 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <MainAppBar onClick={() => setDrawerStatus(true)} />
-        <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
-        <Container className={classes.main} maxWidth="md">
-          <MainStepper />
-        </Container>
-      </ThemeProvider>
+      <SnackbarProvider>
+        <ThemeProvider theme={theme}>
+          <MainAppBar onClick={() => setDrawerStatus(true)} />
+          <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>
+          <Container className={classes.main} maxWidth="md">
+            <MainStepper />
+          </Container>
+        </ThemeProvider>
+      </SnackbarProvider>
     </Provider>
   );
 };

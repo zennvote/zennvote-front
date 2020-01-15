@@ -30,6 +30,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
     setLoading(true);
 
     setEpisodeErrors(episodeErrors.fill(''));
+    let temp = episodeErrors.slice();
     const promises = votes.map((vote, index) => new Promise((resolve) => {
       if (!vote || !vote.episode || !vote.index)
         return resolve(undefined);
@@ -39,12 +40,21 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
       })
       .then(({ data }) => resolve(data))
       .catch(({ response }) => {
-        let temp = episodeErrors.slice();
-        switch (response.status) {
-          case 404:
-            temp[index] = '투고 정보가 존재하지 않습니다. 정확한 회차 및 번호를 입력해주세요.';
-            setEpisodeErrors(temp);
-            break;
+        if (!response || !response.status) {
+          temp[index] = '알 수 없는 오류가 발생했습니다. 다시 한번 시도해주세요.';
+        }
+        else {
+          console.log(response.status);
+          switch (response.status) {
+            case 400:
+              temp[index] = '올바른 투고 정보를 입력해주세요.';
+              break;
+            case 404:
+              temp[index] = '투고 정보가 존재하지 않습니다. 정확한 회차 및 번호를 입력해주세요.';
+              break;
+            default:
+              temp[index] = '알 수 없는 오류가 발생했습니다. 다시 한번 시도해주세요.';
+          }
         }
         resolve(undefined);
       });
@@ -54,6 +64,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count }) => {
     Promise.all(promises)
     .then((values) => {
       setEpisodes(values.map(value => value as EpisodeData));
+      setEpisodeErrors(temp);
       setLoading(false);
     })
     .catch(() => setLoading(false));

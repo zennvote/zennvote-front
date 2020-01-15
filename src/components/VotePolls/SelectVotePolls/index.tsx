@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import styles from './styles';
 import { Select, MenuItem } from '@material-ui/core';
-import ErrorSnackbar from './components/ErrorSnackbar';
+import { useSnackbar } from 'notistack';
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
@@ -11,18 +11,17 @@ interface SelectVotePollsProps {
 
 const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange }) => {
   const classes = styles();
-  const [isDuplicated, setDuplicated] = useState<boolean>(false);
+  const { enqueueSnackbar } = useSnackbar();
   const [selected, setSelected] = useState<any[]>(new Array(count).fill(''));
 
   useEffect(() => {
-    console.log(selected);
     if (onChange) onChange(selected.filter(x => x !== ''));
   }, [selected])
 
   const handleOptionChange = (index: number, event: React.ChangeEvent<{ value: unknown }>) => {
     const { value } = event.target;
     if (value !== '' && selected.indexOf(value) > -1 && selected.indexOf(value) !== index) {
-      setDuplicated(true);
+      enqueueSnackbar('중복 선택은 불가능합니다.', { variant: 'error' });
       return;
     }
 
@@ -47,7 +46,6 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange })
             </Select>
         ))
     }
-      <ErrorSnackbar open={isDuplicated} onClose={() => setDuplicated(false)} />
     </div>
   )
 };
