@@ -2,11 +2,13 @@ import React, { FC } from 'react';
 import { Typography, Card, CardContent, Divider } from '@material-ui/core';
 import styles from './styles';
 import { EpisodeVotePolls } from '../..';
+import Vote from '../../VotePolls/EpisodeVotePolls/Vote';
 
 interface VoiceVoteCardProps {
+  onChange: (values: Vote[]) => void;
 }
 
-const VoiceVoteCard: FC<VoiceVoteCardProps> = () => {
+const VoiceVoteCard: FC<VoiceVoteCardProps> = ({ onChange }) => {
   const classes = styles();
   return (
     <Card className={classes.card}>
@@ -25,7 +27,7 @@ const VoiceVoteCard: FC<VoiceVoteCardProps> = () => {
           <b>타부문과 중복투표 불가</b>
         </Typography>
         <Divider className={classes.divider}/>
-        <EpisodeVotePolls count={5} onChange={console.log} />
+        <EpisodeVotePolls count={5} onChange={onChange} />
       </CardContent>
     </Card>
   )

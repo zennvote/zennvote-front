@@ -1,15 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
 import { PitchVoteCard, VoiceVoteCard, FunnyVoteCard, ContentVoteCard, OriginalVoteCard } from '../../../components';
+import Vote from '../../../components/EpisodeVotePolls/Vote';
 
 interface FieldVoteStepProps {
   onNextStep: () => void;
   onPrevStep: () => void;
 }
 
+interface VoteResult {
+  pitch?: Vote[];
+  voice?: Vote[];
+  funny?: Vote[];
+  content?: Vote[];
+  original?: Vote[];
+}
+
 const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
+  const [results, setResults] = useState<VoteResult>({});
+
   return (
     <div>
       <Typography className={classes.typo}>
@@ -41,11 +52,11 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
         </li>
       </ol>
       <Divider className={classes.divider} />
-      <PitchVoteCard />
-      <VoiceVoteCard />
-      <FunnyVoteCard />
-      <ContentVoteCard />
-      <OriginalVoteCard />
+      <PitchVoteCard onChange={(pitch) => setResults({ ...results, pitch })} />
+      <VoiceVoteCard onChange={(voice) => setResults({ ...results, voice })} />
+      <FunnyVoteCard onChange={(funny) => setResults({ ...results, funny })} />
+      <ContentVoteCard onChange={(content) => setResults({ ...results, content })}/>
+      <OriginalVoteCard onChange={(original) => setResults({ ...results, original })} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전

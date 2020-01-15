@@ -67,10 +67,15 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
 
     Promise.all(promises)
     .then((values) => {
-      onChange(votes.filter((vote, index) => vote && vote.episode && vote.index && !temp[index]));
+      setLoading(false);
+      const result = votes.filter((vote, index) => vote && vote.episode && vote.index && !temp[index])
+      if (result.length === 0) {
+        enqueueSnackbar("최소 1명 이상 투표해야 햡니다.", { variant: 'error' });
+        return;
+      }
+      onChange(result);
       setEpisodes(values);
       setEpisodeErrors(temp);
-      setLoading(false);
       enqueueSnackbar("투표 결과가 적용되었습니다.", { variant: 'success' });
     })
     .catch(() => setLoading(false));
