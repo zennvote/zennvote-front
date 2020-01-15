@@ -44,7 +44,7 @@ const QuizContainer: FC<QuizContainerProps> = ({ defaultValue, onChange }) => {
       {
         quizzes.map(({ title, choices }, index) =>
         (
-          <Paper className={classes.quizPaper}>
+          <Paper key={index} className={classes.quizPaper}>
             <FormControl component="fieldset" className={classes.formControl}>
               <Typography className={classes.quizTitle} variant="h6">{index+1}. {title}</Typography>
               <RadioGroup aria-label="gender" name="gender1" defaultValue={-1} key={values[index]} value={values[index]} onChange={(e) => handleChange(e, index)}>
