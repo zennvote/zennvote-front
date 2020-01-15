@@ -7,12 +7,13 @@ import styles from './styles';
 import { QuizData } from '../../entities/QuizData';
 
 interface QuizContainerProps {
+  defaultValue: number[] | undefined;
   onChange: (values: number[]) => void;
 }
 
-const QuizContainer: FC<QuizContainerProps> = ({ onChange }) => {
+const QuizContainer: FC<QuizContainerProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
-  const [values, setValues] = useState<number[]>([]);
+  const [values, setValues] = useState<number[]>(defaultValue ?? []);
   const [quizzes, setQuizes] = useState<QuizData[]>([]);
 
   useEffect(() => {
@@ -24,7 +25,8 @@ const QuizContainer: FC<QuizContainerProps> = ({ onChange }) => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ROOT_URL}/quiz`)
     .then(({ data }) => {
-      setValues(Array(data.length).fill(-1));
+      if (values.length === 0)
+        setValues(Array(data.length).fill(-1));
       setQuizes(data)
     });
   }, []);

@@ -50,7 +50,7 @@ const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
       <Typography className={classes.typo}>
         외워서 하실 필요 없고 어디서 이 답을 찾을 수 있는지 안다면 됩니다. 오픈북 테스트 같은 거라구
       </Typography>
-      <QuizContainer onChange={setResults} />
+      <QuizContainer defaultValue={vote.problem} onChange={setResults} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전
