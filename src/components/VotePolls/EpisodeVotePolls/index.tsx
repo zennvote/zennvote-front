@@ -5,6 +5,7 @@ import { Button, CircularProgress } from '@material-ui/core';
 import styles from './styles';
 import axios from 'axios';
 import { EpisodeData } from '../../../entities/EpisodeData';
+import { useSnackbar } from 'notistack';
 
 interface EpisodeVotePollsProps {
   count: number;
@@ -13,14 +14,13 @@ interface EpisodeVotePollsProps {
 
 const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
   const classes = styles();
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const [votes, setVotes] = useState<Vote[]>(Array(count).fill(undefined));
   const [episodes, setEpisodes] = useState<EpisodeData[]>(Array(count).fill(undefined));
   const [isLoading, setLoading] = useState<boolean>(false);
   const [episodeErrors, setEpisodeErrors] = useState<string[]>(Array(count).fill(''));
-
-  useEffect(() => {
-    onChange(votes);
-  }, [votes]);
 
   const handleVoteChange = (index: number, vote: Vote | null) => {
     if (!vote)
@@ -49,7 +49,6 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
           temp[index] = '알 수 없는 오류가 발생했습니다. 다시 한번 시도해주세요.';
         }
         else {
-          console.log(response.status);
           switch (response.status) {
             case 400:
               temp[index] = '올바른 투고 정보를 입력해주세요.';
@@ -68,9 +67,11 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
 
     Promise.all(promises)
     .then((values) => {
+      onChange(votes.filter((vote, index) => vote && vote.episode && vote.index && !temp[index]));
       setEpisodes(values);
       setEpisodeErrors(temp);
       setLoading(false);
+      enqueueSnackbar("투표 결과가 적용되었습니다.", { variant: 'success' });
     })
     .catch(() => setLoading(false));
   };
