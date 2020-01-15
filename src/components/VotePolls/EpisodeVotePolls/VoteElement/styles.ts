@@ -8,6 +8,8 @@ const styles = () => makeStyles((theme: Theme) =>
     voteRoot: {
       display: 'flex',
       alignItems: 'center',
+      marginRight: theme.spacing(4),
+      paddingTop: 0,
     },
     textField: {
       width: 50,
@@ -20,10 +22,8 @@ const styles = () => makeStyles((theme: Theme) =>
     },
     textFieldDesc: {
       fontSize: 14,
-      marginLeft: theme.spacing(4),
     },
     captionRoot: {
-      marginTop: -theme.spacing(1),
     }
   })
 )();

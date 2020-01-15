@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Typography, TextField } from '@material-ui/core';
+import { Typography, TextField, Grid } from '@material-ui/core';
 import styles from './styles';
 import { EpisodeData } from '../../../../entities/EpisodeData';
 import Vote from '../Vote';
@@ -53,11 +53,14 @@ const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged, epis
 
   return (
     <div className={classes.root}>
-      <div className={classes.voteRoot}>
-        <TextField className={classes.textField} type="number" label="회차" onChange={ handleEpisodeChanged } />
-        <Typography variant="h6">회</Typography>
-        <TextField className={classes.textField} type="number" label="번호" onChange={ handleIndexChanged } />
-        <Typography variant="h6">번</Typography>
+      <Grid container>
+        <Grid item className={classes.voteRoot}>
+          <TextField className={classes.textField} type="number" label="회차" onChange={ handleEpisodeChanged } />
+          <Typography variant="h6">회</Typography>
+          <TextField className={classes.textField} type="number" label="번호" onChange={ handleIndexChanged } />
+          <Typography variant="h6">번</Typography>
+        </Grid>
+        <Grid item className={classes.voteRoot}>
         {
           episodeError ?
           <Typography color="error" className={classes.textFieldDesc}>
@@ -71,7 +74,8 @@ const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged, epis
             </Typography>
           )
         }
-      </div>
+        </Grid>
+      </Grid>
       { error &&
       <div className={classes.captionRoot} >
         <Typography variant="caption" color="error">
