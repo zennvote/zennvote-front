@@ -6,24 +6,33 @@ import { Typography, Divider, FormControl, RadioGroup, FormControlLabel, Radio, 
 import styles from './styles';
 import { QuizData } from '../../entities/QuizData';
 
-interface QuizContainerProps { }
+interface QuizContainerProps {
+  onChange: (values: number[]) => void;
+}
 
-const QuizContainer: FC<QuizContainerProps> = () => {
+const QuizContainer: FC<QuizContainerProps> = ({ onChange }) => {
   const classes = styles();
   const [values, setValues] = useState<number[]>([]);
   const [quizzes, setQuizes] = useState<QuizData[]>([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ROOT_URL}/quiz`)
-    .then(({ data }) => setQuizes(data));
+    if (values.length === 0)
+      return;
+    onChange(values);
+  }, [values])
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ROOT_URL}/quiz`)
+    .then(({ data }) => {
+      setValues(Array(data.length).fill(-1));
+      setQuizes(data)
+    });
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const { value } = event.target as HTMLInputElement;
     let next = values.slice();
     next[index] = parseInt(value);
-    console.log(next)
     setValues(next);
   };
 

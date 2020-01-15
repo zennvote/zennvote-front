@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <SnackbarProvider>
+      <SnackbarProvider autoHideDuration={5000}>
         <ThemeProvider theme={theme}>
           <MainAppBar onClick={() => setDrawerStatus(true)} />
           <MainDrawer drawerWidth={ drawerWidth } isOpend={ isDrawerOpend } onClose={() => setDrawerStatus(false)}/>

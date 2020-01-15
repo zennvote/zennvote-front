@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, Typography } from '@material-ui/core';
 import styles from './styles';
 import { QuizContainer } from '../..';
+import { useSnackbar } from 'notistack';
 
 interface QuizStepProps {
   onNextStep: () => void;
@@ -10,6 +11,22 @@ interface QuizStepProps {
 
 const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
+  const [results, setResults] = useState<number[] | undefined>(undefined);
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleNextStep = () => {
+    if (!results)
+      return;
+
+    if (results.includes(-1)) {
+      enqueueSnackbar('아직 선택하지 않은 항목이 있습니다. 확인해주세요.', { variant: 'error' });
+      return;
+    }
+
+    onNextStep()
+  };
+
   return (
     <div>
       <Typography className={classes.typo}>
@@ -26,12 +43,12 @@ const QuizStep: FC<QuizStepProps> = ({ onNextStep, onPrevStep }) => {
       <Typography className={classes.typo}>
         외워서 하실 필요 없고 어디서 이 답을 찾을 수 있는지 안다면 됩니다. 오픈북 테스트 같은 거라구
       </Typography>
-      <QuizContainer />
+      <QuizContainer onChange={setResults} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전
         </Button>
-        <Button className={classes.button} variant="contained" color="primary" onClick={() => onNextStep()}>
+        <Button className={classes.button} variant="contained" color="primary" onClick={handleNextStep}>
           다음
         </Button>
       </div>

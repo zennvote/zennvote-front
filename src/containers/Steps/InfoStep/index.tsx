@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeVote } from '../../../store/modules/vote';
 import { RootState } from '../../../store/modules';
 import { useSnackbar } from 'notistack';
-import EmailEmptyErrorSnackbar from './components/EmailEmptyErrorSnackbar';
 
 interface InfoStepProps {
   onNextStep: () => void;
@@ -18,7 +17,6 @@ const InfoStep: FC<InfoStepProps> = ({ onNextStep }) => {
 
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState<string>(vote.email ?? '');
-  const [isEmailEmptyError, setEmailEmptyError] = useState<boolean>(false);
 
   const handleNextStep = () => {
     if (!email) {
