@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styles from "../styles";
 import { Card, CardContent, Typography, Divider } from "@material-ui/core";
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import { VoteData } from "../../../entities/VoteData";
 import { EpisodeData } from "../../../entities/EpisodeData";
+import axios from 'axios';
 
 interface FieldCardProps {
   vote: VoteData;
@@ -52,7 +53,26 @@ const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData }) => {
 
 const FieldCard: FC<FieldCardProps> = ({ vote }) => {
   const classes = styles();
-  const { pitch, voice } = vote;
+  const [latestVote, setLatestVote] = useState<VoteData>();
+
+  useEffect(() => {
+    const { pitch, voice, funny, content, original } = vote;
+    const promises = [pitch, voice, funny, content, original]
+    .map(async (episodeDatas) => {
+      if (!episodeDatas)
+        return undefined;
+
+      const episodePromises = episodeDatas.map(async ({ episode, index }) => ( await axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode`, {
+        params: { episode, index },
+      }) ).data as EpisodeData );
+      return await Promise.all(episodePromises);
+    });
+
+    Promise.all(promises)
+    .then(([pitch, voice, funny, content, original]) => {
+      setLatestVote({ pitch, voice, funny, content, original });
+    });
+  }, []);
 
   return (
     <Card className={classes.cardRoot}>
@@ -62,8 +82,11 @@ const FieldCard: FC<FieldCardProps> = ({ vote }) => {
           </Typography>
           <Divider className={classes.divider} />
           <div className={classes.episodeRoot}>
-            <EpisodeItem classes={classes} episodeData={pitch} title='가창력이 뛰어난 프로듀서 상' />
-            <EpisodeItem classes={classes} episodeData={voice} title='멋진 목소리의 프로듀서 상' />
+            <EpisodeItem classes={classes} episodeData={latestVote?.pitch} title='가창력이 뛰어난 프로듀서 상' />
+            <EpisodeItem classes={classes} episodeData={latestVote?.voice} title='멋진 목소리의 프로듀서 상' />
+            <EpisodeItem classes={classes} episodeData={latestVote?.funny} title='예능 프로듀서 상' />
+            <EpisodeItem classes={classes} episodeData={latestVote?.content} title='노래 그 이상♬' />
+            <EpisodeItem classes={classes} episodeData={latestVote?.original} title='원곡재현상' />
           </div>
         </CardContent>
     </Card>
