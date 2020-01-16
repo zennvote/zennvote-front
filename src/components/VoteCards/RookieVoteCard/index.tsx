@@ -11,7 +11,6 @@ interface RookieVoteCardProps {
 
 const RookieVoteCard: FC<RookieVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
-  const [selects, setSelects] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
   
   useEffect(() => {
@@ -21,7 +20,6 @@ const RookieVoteCard: FC<RookieVoteCardProps> = ({ defaultValue, onChange }) => 
   }, []);
 
   const handlePollsChange = (arr: any[]) => {
-    setSelects(arr);
     onChange(arr);
   };
 

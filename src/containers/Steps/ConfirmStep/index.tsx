@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
-import { PitchVoteCard, ConfirmList } from '../../../components';
+import { ConfirmList } from '../../../components';
 
 interface ConfirmStepProps {
   onNextStep: () => void;

@@ -12,14 +12,6 @@ interface VoteElementProps {
   episodeError?: string;
 }
 
-enum VoteInputError {
-  PASS,
-}
-
-const ValidateVote = (rawEpisode: string, rawIndex: string) : VoteInputError => {
-  return VoteInputError.PASS;
-};
-
 const VoteElement: FC<VoteElementProps> = ({ index, episodeData, defaultValue, onChanged, episodeError }) => {
   const classes = styles();
   const [vote, setVote] = useState<Vote | null>(defaultValue ?? null);

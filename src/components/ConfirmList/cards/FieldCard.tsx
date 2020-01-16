@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "../styles";
-import { Card, CardContent, Typography, Divider, Grid } from "@material-ui/core";
+import { Card, CardContent, Typography, Divider } from "@material-ui/core";
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import { VoteData } from "../../../entities/VoteData";
 import { EpisodeData } from "../../../entities/EpisodeData";
@@ -52,7 +52,7 @@ const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData }) => {
 
 const FieldCard: FC<FieldCardProps> = ({ vote }) => {
   const classes = styles();
-  const { pitch, voice, funny, content, original } = vote;
+  const { pitch, voice } = vote;
 
   return (
     <Card className={classes.cardRoot}>
