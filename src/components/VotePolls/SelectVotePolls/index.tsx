@@ -46,8 +46,8 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, defaultValue, coun
     <Grid container className={classes.root} spacing={2}>
     {
         new Array(count).fill(0).map((_, index) => (
-            <Grid item className={classes.selectGrid} xs={sizes ? sizes[0] : 12} sm={sizes ? sizes[1] : 4} md={sizes ? sizes[2] : 4}>
-              <Select key={index} value={selected[index]} className={classes.select} onChange={(e) => handleOptionChange(index, e)}>
+            <Grid item key={index} className={classes.selectGrid} xs={sizes ? sizes[0] : 12} sm={sizes ? sizes[1] : 4} md={sizes ? sizes[2] : 4}>
+              <Select value={selected[index]} className={classes.select} onChange={(e) => handleOptionChange(index, e)}>
                   <MenuItem key='none' value=''>선택 안함</MenuItem>
               {
                   choices.map(x => {
