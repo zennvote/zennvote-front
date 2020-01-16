@@ -28,10 +28,13 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const dispatch = useDispatch();
 
   const { enqueueSnackbar } = useSnackbar();
-  const [results, setResults] = useState<VoteResult>({});
+  const [pitch, setPitch] = useState<Vote[] | undefined>(undefined);
+  const [voice,  setVoice] = useState<Vote[] | undefined>(undefined);
+  const [funny, setFunny] = useState<Vote[] | undefined>(undefined);
+  const [content, setContent] = useState<Vote[] | undefined>(undefined);
+  const [original, setOriginal] = useState<Vote[] | undefined>(undefined);
 
   const handleNextStep = () => {
-    const { pitch, voice, funny, content, original } = results;
     if (!pitch || !voice || !funny || !content || !original) {
       enqueueSnackbar("아직 투표하지 않은 항목이 있습니다. 확인해주세요.", { variant: 'error' });
       return;
@@ -78,11 +81,11 @@ const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
         </li>
       </ol>
       <Divider className={classes.divider} />
-      <PitchVoteCard onChange={(pitch) => setResults({ ...results, pitch })} />
-      <VoiceVoteCard onChange={(voice) => setResults({ ...results, voice })} />
-      <FunnyVoteCard onChange={(funny) => setResults({ ...results, funny })} />
-      <ContentVoteCard onChange={(content) => setResults({ ...results, content })}/>
-      <OriginalVoteCard onChange={(original) => setResults({ ...results, original })} />
+      <PitchVoteCard defaultValue={vote.pitch} onChange={setPitch} />
+      <VoiceVoteCard defaultValue={vote.voice} onChange={setVoice} />
+      <FunnyVoteCard defaultValue={vote.funny} onChange={setFunny} />
+      <ContentVoteCard defaultValue={vote.content} onChange={setContent}/>
+      <OriginalVoteCard defaultValue={vote.original} onChange={setOriginal} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전

@@ -5,10 +5,11 @@ import { EpisodeVotePolls } from '../..';
 import Vote from '../../VotePolls/EpisodeVotePolls/Vote';
 
 interface PitchVoteCardProps {
+  defaultValue?: Vote[] | undefined;
   onChange: (values: Vote[]) => void;
 }
 
-const PitchVoteCard: FC<PitchVoteCardProps> = ({ onChange }) => {
+const PitchVoteCard: FC<PitchVoteCardProps> = ({ onChange, defaultValue }) => {
   const classes = styles();
   return (
     <Card className={classes.card}>
@@ -27,7 +28,7 @@ const PitchVoteCard: FC<PitchVoteCardProps> = ({ onChange }) => {
           <b>타부문과 중복투표 불가</b>
         </Typography>
         <Divider className={classes.divider}/>
-        <EpisodeVotePolls count={5} onChange={onChange} />
+        <EpisodeVotePolls count={5} defaultValue={defaultValue} onChange={onChange} />
       </CardContent>
     </Card>
   )

@@ -7,6 +7,7 @@ import Vote from '../Vote';
 interface VoteElementProps {
   index: number;
   episodeData?: EpisodeData;
+  defaultValue: Vote | undefined,
   onChanged?: (index: number, vote: Vote | null) => void;
   episodeError?: string;
 }
@@ -19,9 +20,9 @@ const ValidateVote = (rawEpisode: string, rawIndex: string) : VoteInputError => 
   return VoteInputError.PASS;
 };
 
-const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged, episodeError }) => {
+const VoteElement: FC<VoteElementProps> = ({ index, episodeData, defaultValue, onChanged, episodeError }) => {
   const classes = styles();
-  const [vote, setVote] = useState<Vote | null>(null);
+  const [vote, setVote] = useState<Vote | null>(defaultValue ?? null);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -55,9 +56,9 @@ const VoteElement: FC<VoteElementProps> = ({ index, episodeData, onChanged, epis
     <div className={classes.root}>
       <Grid container>
         <Grid item className={classes.voteRoot}>
-          <TextField className={classes.textField} type="number" label="회차" onChange={ handleEpisodeChanged } />
+          <TextField className={classes.textField} type="number" label="회차" value={vote?.episode ?? ''} onChange={ handleEpisodeChanged } />
           <Typography variant="h6">회</Typography>
-          <TextField className={classes.textField} type="number" label="번호" onChange={ handleIndexChanged } />
+          <TextField className={classes.textField} type="number" label="번호" value={vote?.index ?? ''} onChange={ handleIndexChanged } />
           <Typography variant="h6">번</Typography>
         </Grid>
         <Grid item className={classes.voteRoot}>

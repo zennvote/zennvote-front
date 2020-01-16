@@ -9,18 +9,24 @@ import { useSnackbar } from 'notistack';
 
 interface EpisodeVotePollsProps {
   count: number;
+  defaultValue?: Vote[] | undefined;
   onChange: (values: Vote[]) => void;
 }
 
-const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
+const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, defaultValue, onChange }) => {
   const classes = styles();
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const [votes, setVotes] = useState<Vote[]>(Array(count).fill(undefined));
+  const [votes, setVotes] = useState<Vote[]>(defaultValue ?? Array(count).fill(undefined));
   const [episodes, setEpisodes] = useState<EpisodeData[]>(Array(count).fill(undefined));
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(defaultValue ? true : false);
   const [episodeErrors, setEpisodeErrors] = useState<string[]>(Array(count).fill(''));
+
+  useEffect(() => {
+    if (defaultValue)
+      handleConfirm(true);
+  }, []);
 
   const handleVoteChange = (index: number, vote: Vote | null) => {
     if (!vote)
@@ -31,7 +37,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
     setVotes(newVotes);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (isInitial: boolean = false) => {
     setLoading(true);
 
     setEpisodeErrors(episodeErrors.fill(''));
@@ -72,11 +78,14 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
       setEpisodeErrors(temp);
       
       const result = votes.filter((vote, index) => vote && vote.episode && vote.index && !temp[index])
+      onChange(result);
+      
+      if (isInitial)
+        return;
       if (result.length === 0) {
         enqueueSnackbar("최소 1명 이상 투표해야 햡니다.", { variant: 'error' });
         return;
       }
-      onChange(result);
       enqueueSnackbar("투표 결과가 적용되었습니다.", { variant: 'success' });
     })
     .catch(() => setLoading(false));
@@ -86,12 +95,12 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, onChange }) => {
     <div className={classes.root}>
     {
       [...Array(count).keys()].map((index: number) => (
-        <VoteElement key={index} index={index} onChanged={handleVoteChange} episodeData={episodes[index] ? episodes[index] : undefined} episodeError={episodeErrors[index]} />
+        <VoteElement key={index} index={index} defaultValue={defaultValue && defaultValue.length > index ? defaultValue[index] : undefined} onChanged={handleVoteChange} episodeData={episodes[index] ? episodes[index] : undefined} episodeError={episodeErrors[index]} />
       ))
     }
       <div className={classes.buttonRoot}>
         <div className={classes.buttonWrapper}>
-          <Button className={classes.button} variant="contained" color="primary" onClick={handleConfirm} disabled={isLoading}>
+          <Button className={classes.button} variant="contained" color="primary" onClick={() => handleConfirm()} disabled={isLoading}>
             회차 정보 조회
           </Button>
           { isLoading && <CircularProgress size={24} className={classes.progress} /> }

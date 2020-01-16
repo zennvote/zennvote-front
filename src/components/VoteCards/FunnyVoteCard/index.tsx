@@ -5,10 +5,11 @@ import { EpisodeVotePolls } from '../..';
 import Vote from '../../VotePolls/EpisodeVotePolls/Vote';
 
 interface FunnyVoteCardProps {
+  defaultValue?: Vote[] | undefined;
   onChange: (values: Vote[]) => void;
 }
 
-const FunnyVoteCard: FC<FunnyVoteCardProps> = ({ onChange }) => {
+const FunnyVoteCard: FC<FunnyVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
   return (
     <Card className={classes.card}>
@@ -26,7 +27,7 @@ const FunnyVoteCard: FC<FunnyVoteCardProps> = ({ onChange }) => {
           <b>타부문과 중복투표 불가</b>
         </Typography>
         <Divider className={classes.divider}/>
-        <EpisodeVotePolls count={2} onChange={onChange} />
+        <EpisodeVotePolls count={2} defaultValue={defaultValue} onChange={onChange} />
       </CardContent>
     </Card>
   )
