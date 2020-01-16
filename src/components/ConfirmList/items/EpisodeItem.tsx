@@ -8,15 +8,18 @@ interface ItemProps {
   episodeData: EpisodeData[] | undefined;
   title: string;
   classes: any;
+  onUpdated?: (result: EpisodeData[] | undefined) => void;
 }
 
-const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData }) => {
+const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData, onUpdated }) => {
   const [latestData, setLatestData] = useState<EpisodeData[] | undefined>(undefined);
   const [isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!episodeData) {
       setLoading(false);
+      if (onUpdated)
+        onUpdated(undefined);
       return;
     }
 
@@ -27,7 +30,11 @@ const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData }) => {
         });
         return res.data as EpisodeData;
       })
-    ).then(setLatestData);
+    ).then((result) => {
+      setLatestData(result);
+      if (onUpdated)
+        onUpdated(result);
+    });
   }, []);
 
   return (
