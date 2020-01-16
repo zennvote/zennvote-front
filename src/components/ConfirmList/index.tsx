@@ -7,6 +7,7 @@ import { VoteData } from "../../entities/VoteData";
 import { RootState } from "../../store/modules";
 import { useSelector } from "react-redux";
 import { EpisodeData } from "../../entities/EpisodeData";
+import PopCard from "./cards/PopCard";
 
 interface ConfirmListProps { }
 
@@ -18,6 +19,7 @@ const ConfirmList: FC<ConfirmListProps> = () => {
     <div className={classes.root}>
         <EmailCard vote={ vote } />
         <FieldCard vote={ vote } />
+        <PopCard vote={ vote } />
     </div>
   );
 };
