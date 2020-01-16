@@ -14,14 +14,6 @@ interface FieldVoteStepProps {
   onPrevStep: () => void;
 }
 
-interface VoteResult {
-  pitch?: Vote[];
-  voice?: Vote[];
-  funny?: Vote[];
-  content?: Vote[];
-  original?: Vote[];
-}
-
 const FieldVoteStep: FC<FieldVoteStepProps> = ({ onNextStep, onPrevStep }) => {
   const classes = styles();
   const vote = useSelector((state: RootState) => state.vote);

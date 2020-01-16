@@ -5,9 +5,11 @@ import { SelectVotePolls } from '../..';
 import axios from 'axios';
 
 interface UnitVoteCardProps {
+  defaultValue?: string[] | undefined;
+  onChange: (values: string[]) => void;
 }
 
-const UnitVoteCard: FC<UnitVoteCardProps> = () => {
+const UnitVoteCard: FC<UnitVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
   const [selects, setSelects] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
@@ -21,6 +23,7 @@ const UnitVoteCard: FC<UnitVoteCardProps> = () => {
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);
+    onChange(arr);
   };
 
   return (
@@ -40,7 +43,7 @@ const UnitVoteCard: FC<UnitVoteCardProps> = () => {
         <div className={classes.selectRoot}>
         {
           candidates ?
-          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} sizes={[12, 12, 12]} />
+          <SelectVotePolls choices={candidates} defaultValue={defaultValue} count={3} onChange={handlePollsChange} sizes={[12, 12, 12]} />
           : <CircularProgress className={classes.progress} />
         }
         </div>

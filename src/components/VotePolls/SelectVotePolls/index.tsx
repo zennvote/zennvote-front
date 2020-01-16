@@ -7,15 +7,24 @@ type Size = boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 
 
 interface SelectVotePollsProps {
   choices: ({ name: string, value: any } | string)[];
+  defaultValue?: string[] | undefined;
   count: number;
   onChange?: (selected: any[]) => void;
   sizes?: Size[];
 }
 
-const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, count, onChange, sizes }) => {
+const getDefaultSelection = (count: number, defaultValue: string[] | undefined) => {
+  if (!defaultValue)
+    return Array(count).fill('');
+
+  const length = defaultValue.length;
+  return Array(count).fill('').map((x, index) => length > index ? defaultValue[index] : x);
+}
+
+const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, defaultValue, count, onChange, sizes }) => {
   const classes = styles();
   const { enqueueSnackbar } = useSnackbar();
-  const [selected, setSelected] = useState<any[]>(new Array(count).fill(''));
+  const [selected, setSelected] = useState<any[]>(getDefaultSelection(count, defaultValue));
 
   useEffect(() => {
     if (onChange) onChange(selected.filter(x => x !== ''));

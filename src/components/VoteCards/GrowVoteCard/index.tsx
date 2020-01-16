@@ -5,14 +5,15 @@ import { SelectVotePolls } from '../..';
 import axios from 'axios';
 
 interface GrowVoteCardProps {
+  defaultValue?: string[] | undefined;
+  onChange: (value: string[]) => void;
 }
 
-const GrowVoteCard: FC<GrowVoteCardProps> = () => {
+const GrowVoteCard: FC<GrowVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
   const [selects, setSelects] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
   
-
   useEffect(() => {
     axios
     .get(`http://vote020.dev-shift.me/api/choices/grow`)
@@ -21,6 +22,7 @@ const GrowVoteCard: FC<GrowVoteCardProps> = () => {
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);
+    onChange(arr);
   };
 
   return (
@@ -49,7 +51,7 @@ const GrowVoteCard: FC<GrowVoteCardProps> = () => {
         <div className={classes.selectRoot}>
         {
           candidates ?
-          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} />
+          <SelectVotePolls choices={candidates} defaultValue={defaultValue} count={3} onChange={handlePollsChange} />
           : <CircularProgress className={classes.progress} />
         }
         </div>

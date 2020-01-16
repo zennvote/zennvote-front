@@ -5,9 +5,11 @@ import { SelectVotePolls } from '../..';
 import axios from 'axios';
 
 interface RookieVoteCardProps {
+  defaultValue?: string[] | undefined;
+  onChange: (value: string[]) => void;
 }
 
-const RookieVoteCard: FC<RookieVoteCardProps> = () => {
+const RookieVoteCard: FC<RookieVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
   const [selects, setSelects] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
@@ -20,6 +22,7 @@ const RookieVoteCard: FC<RookieVoteCardProps> = () => {
 
   const handlePollsChange = (arr: any[]) => {
     setSelects(arr);
+    onChange(arr);
   };
 
   return (
@@ -44,7 +47,7 @@ const RookieVoteCard: FC<RookieVoteCardProps> = () => {
         <div className={classes.selectRoot}>
         {
           candidates ?
-          <SelectVotePolls choices={candidates} count={3} onChange={handlePollsChange} />
+          <SelectVotePolls choices={candidates} defaultValue={defaultValue} count={3} onChange={handlePollsChange} />
           : <CircularProgress className={classes.progress} />
         }
         </div>

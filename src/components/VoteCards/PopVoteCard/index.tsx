@@ -3,24 +3,15 @@ import { Typography, Card, CardContent, Divider, CircularProgress } from '@mater
 import styles from './styles';
 import { EpisodeVotePolls } from '../..';
 import axios from 'axios';
+import Vote from '../../EpisodeVotePolls/Vote';
 
 interface PopVoteCardProps {
+  defaultValue?: Vote[] | undefined;
+  onChange: (values: Vote[]) => void;
 }
 
-const PopVoteCard: FC<PopVoteCardProps> = () => {
+const PopVoteCard: FC<PopVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
-  const [selects, setSelects] = useState<string[]>([]);
-  const [candidates, setCandidates] = useState<string[] | undefined>(undefined);
-  
-  useEffect(() => {
-    axios
-    .get(`http://vote020.dev-shift.me/api/producers`)
-    .then(({ data }) => setCandidates(data));
-  }, []);
-
-  const handlePollsChange = (arr: any[]) => {
-    setSelects(arr);
-  };
 
   return (
     <Card className={classes.card}>
@@ -42,7 +33,7 @@ const PopVoteCard: FC<PopVoteCardProps> = () => {
         </Typography>
         <Divider className={classes.divider}/>
         <div className={classes.selectRoot}>
-        <EpisodeVotePolls count={3} onChange={console.log} />
+          <EpisodeVotePolls count={3} defaultValue={defaultValue} onChange={onChange} />
         </div>
       </CardContent>
     </Card>

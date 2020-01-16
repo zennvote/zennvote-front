@@ -9,9 +9,9 @@ export interface VoteData {
     content?: EpisodeData[];      //컨텐츠 상
     original?: EpisodeData[];     //원곡 재현 상
     sleep?: EpisodeData[];          // 인기 상
-    unit?: string;           //유닛 상
-    new?: string;            //신인 상
-    grow?: string;           //성장 상
+    unit?: string[];           //유닛 상
+    new?: string[];            //신인 상
+    grow?: string[];           //성장 상
     master?: string[];       //대 상
     custom?: {              //내가 주고 싶은 상
         episode: EpisodeData;    // n회 m번째
