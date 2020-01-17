@@ -23,6 +23,11 @@ const InfoStep: FC<InfoStepProps> = ({ onNextStep }) => {
       enqueueSnackbar('이메일을 입력해주세요.', { variant: 'error' });
       return;
     }
+    const regex = /\S+@\S+\.\S+/
+    if (!regex.test(email)) {
+      enqueueSnackbar('올바른 이메일을 입력해주세요.', { variant: 'error' });
+      return;
+    }
     dispatch(changeVote({ email }));
     onNextStep();
   }

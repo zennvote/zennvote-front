@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { EpisodeData } from "../../entities/EpisodeData";
 import PopCard from "./cards/PopCard";
 import { useSnackbar } from "notistack";
+import MasterCard from "./cards/MasterCard";
 
 type DuplicateCheck = { name: string, data: EpisodeData, index: number };
 
@@ -87,6 +88,7 @@ const ConfirmList: FC<ConfirmListProps> = ({ validateTrigger, onValidate }) => {
         <EmailCard vote={ vote } />
         <FieldCard vote={ vote } onUpdate={setFields} />
         <PopCard vote={ vote } />
+        <MasterCard vote={ vote } />
     </div>
   );
 };
