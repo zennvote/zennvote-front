@@ -43,7 +43,8 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, defaultValue, onCh
     setEpisodeErrors(episodeErrors.fill(''));
     let temp = episodeErrors.slice();
     const promises = votes.map((vote, index) => new Promise<EpisodeData>((resolve) => {
-      if (!vote || !vote.episode || !vote.index)
+      console.log(vote);
+      if (!vote || (!vote.episode && vote.episode !== 0) || (!vote.index && vote.index !== 0))
         return resolve(undefined);
 
       return axios.get(`${process.env.REACT_APP_API_ROOT_URL}/episode`, {
