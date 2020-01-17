@@ -21,4 +21,5 @@ export interface VoteData {
         name: string;       //받는 분
         content: string;    //내용
     }[];
+    suggestion?: string;
 }
