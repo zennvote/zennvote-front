@@ -10,6 +10,7 @@ import { EpisodeData } from "../../entities/EpisodeData";
 import PopCard from "./cards/PopCard";
 import { useSnackbar } from "notistack";
 import MasterCard from "./cards/MasterCard";
+import axios from 'axios';
 
 type DuplicateCheck = { name: string, data: EpisodeData, index: number };
 
@@ -80,7 +81,15 @@ const ConfirmList: FC<ConfirmListProps> = ({ validateTrigger, onValidate }) => {
       return;
     }
 
-    onValidate(true);
+    // onValidate(true);
+    axios.post(`${process.env.REACT_APP_API_ROOT_URL}/vote`, vote)
+    .then((res) => {
+      onValidate(true);
+    })
+    .catch((res) => {
+      enqueueSnackbar('투표 정보 반영에 실패했습니다. 관리자에게 문의해주세요.', { variant: 'error' });
+      onValidate(false);
+    });
   }, [validateTrigger]);
 
   return (
