@@ -25,6 +25,8 @@ import SelectVotePolls from './VotePolls/SelectVotePolls';
 import MessageVoteCard from './VoteCards/MessageVoteCard';
 import SuggestionVoteCard from './VoteCards/SuggestionVoteCard';
 
+import VoteEnd from './VoteEnd';
+
 export {
   MainAppBar,
   MainDrawer,
@@ -52,4 +54,6 @@ export {
   
   EpisodeVotePolls,
   SelectVotePolls,
+
+  VoteEnd,
 }
