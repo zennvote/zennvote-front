@@ -28,6 +28,7 @@ const SelectVotePolls: FC<SelectVotePollsProps> = ({ choices, defaultValue, coun
 
   useEffect(() => {
     if (onChange) onChange(selected.filter(x => x !== ''));
+   
   }, [selected])
 
   const handleOptionChange = (index: number, event: React.ChangeEvent<{ value: unknown }>) => {

@@ -20,6 +20,7 @@ const QuizContainer: FC<QuizContainerProps> = ({ defaultValue, onChange }) => {
     if (values.length === 0)
       return;
     onChange(values);
+   
   }, [values])
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const QuizContainer: FC<QuizContainerProps> = ({ defaultValue, onChange }) => {
         setValues(Array(data.length).fill(-1));
       setQuizes(data)
     });
+   
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {

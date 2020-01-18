@@ -1,10 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Typography, Divider, TextField, Button } from '@material-ui/core';
+import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeVote } from '../../../store/modules/vote';
 import { RootState } from '../../../store/modules';
-import { useSnackbar } from 'notistack';
 import { CustomVoteCard, MessageVoteCard, SuggestionVoteCard } from '../../../components';
 import CustomVote from '../../../components/VoteCards/CustomVoteCard/Vote';
 import MessageVote from '../../../components/VoteCards/MessageVoteCard/Vote';
@@ -19,7 +18,6 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
   const vote = useSelector((state: RootState) => state.vote);
   const dispatch = useDispatch();
 
-  const { enqueueSnackbar } = useSnackbar();
   const [custom, setCustom] = useState<CustomVote[]>([]);
   const [message, setMessage] = useState<MessageVote[]>([]);
   const [suggestion, setSuggestion] = useState<string>('');
@@ -29,6 +27,7 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
       setCustom(vote.custom);
     if (vote.message)
       setMessage(vote.message);
+   
   }, []);
 
   const handleNextStep = () => {

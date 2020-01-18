@@ -2,8 +2,6 @@ import React, { FC } from "react";
 import styles from "../styles";
 import { Card, CardContent, Typography, Divider, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from "@material-ui/core";
 import { VoteData } from "../../../entities/VoteData";
-import EpisodeItem from "../items/EpisodeItem";
-import SelectionItem from "../items/SelectionItem";
 
 interface MasterCardProps {
   vote: VoteData;

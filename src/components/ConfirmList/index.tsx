@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
 import styles from "./styles";
-import { Divider, LinearProgress, Typography } from "@material-ui/core";
 import EmailCard from "./cards/EmailCard";
 import FieldCard from "./cards/FieldCard";
 import { VoteData } from "../../entities/VoteData";
@@ -40,7 +39,6 @@ const getDuplicated = (vote: VoteData) => {
 };
 
 const isEpisodeDuplicated = (episodes: DuplicateCheck[]) => {
-  console.log(episodes)
   return episodes
   .filter((episode) => episode.data)
   .filter(
@@ -90,6 +88,7 @@ const ConfirmList: FC<ConfirmListProps> = ({ validateTrigger, onValidate }) => {
       enqueueSnackbar('투표 정보 반영에 실패했습니다. 관리자에게 문의해주세요.', { variant: 'error' });
       onValidate(false);
     });
+   
   }, [validateTrigger]);
 
   return (

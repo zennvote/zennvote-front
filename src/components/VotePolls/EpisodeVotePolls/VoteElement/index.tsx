@@ -32,6 +32,7 @@ const VoteElement: FC<VoteElementProps> = ({ index, episodeData, defaultValue, o
   useEffect(() => {
     if (onChanged)
       onChanged(index, vote);
+   
   }, [vote]);
 
   const handleEpisodeChanged = (event: React.ChangeEvent<HTMLInputElement>) => {

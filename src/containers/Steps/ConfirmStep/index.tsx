@@ -28,6 +28,7 @@ const ConfirmStep: FC<ConfirmStepProps> = ({ onNextStep, onPrevStep }) => {
     }
 
     setValidation(undefined);
+   
   }, [validation]);
 
   return (

@@ -1,9 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Typography, Card, CardContent, Divider, CircularProgress } from '@material-ui/core';
 import styles from './styles';
-import { EpisodeVotePolls, SelectVotePolls } from '../..';
+import { SelectVotePolls } from '../..';
 import axios from 'axios';
-import Vote from '../../EpisodeVotePolls/Vote';
 
 interface MasterVoteCardProps {
   defaultValue?: string[] | undefined;

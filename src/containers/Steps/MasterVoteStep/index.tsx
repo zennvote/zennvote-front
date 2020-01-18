@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Typography, Divider, TextField, Button } from '@material-ui/core';
+import { Typography, Divider, Button } from '@material-ui/core';
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeVote } from '../../../store/modules/vote';

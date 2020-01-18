@@ -35,6 +35,7 @@ const EpisodeItem: FC<ItemProps> = ({ classes, title, episodeData, onUpdated }) 
       if (onUpdated)
         onUpdated(result);
     });
+   
   }, []);
 
   return (

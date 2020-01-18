@@ -32,6 +32,7 @@ const FieldCard: FC<FieldCardProps> = ({ vote, onUpdate }) => {
         original: latestOriginal,
       });
     }
+   
   }, [latestPitch, latestVoice, latestFunny, latestContent, latestOriginal]);
 
   return (

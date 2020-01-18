@@ -26,6 +26,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, defaultValue, onCh
   useEffect(() => {
     if (defaultValue)
       handleConfirm(true);
+   
   }, []);
 
   const handleVoteChange = (index: number, vote: Vote | null) => {
