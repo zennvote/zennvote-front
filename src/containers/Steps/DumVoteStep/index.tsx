@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeVote } from '../../../store/modules/vote';
 import { RootState } from '../../../store/modules';
 import { useSnackbar } from 'notistack';
-import { CustomVoteCard } from '../../../components';
-import Vote from '../../../components/VoteCards/CustomVoteCard/Vote'
+import { CustomVoteCard, MessageVoteCard } from '../../../components';
+import CustomVote from '../../../components/VoteCards/CustomVoteCard/Vote';
+import MessageVote from '../../../components/VoteCards/MessageVoteCard/Vote';
 
 interface DumVoteStepProps {
   onNextStep: () => void;
@@ -19,18 +20,26 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
   const dispatch = useDispatch();
 
   const { enqueueSnackbar } = useSnackbar();
-  const [custom, setCustom] = useState<Vote[]>([]);
+  const [custom, setCustom] = useState<CustomVote[]>([]);
+  const [message, setMessage] = useState<MessageVote[]>([]);
 
   useEffect(() => {
     if (vote.custom)
       setCustom(vote.custom);
+    if (vote.message)
+      setMessage(vote.message);
   }, []);
 
   const handleNextStep = () => {
-    const res = { custom : custom
-      .filter(value => value !== undefined && value.episode !== undefined && value.name !== undefined )
-      .map(value => ({ episode: value.episode, content: value.name } as any)) };
-    console.log(res);
+    const res = { 
+      custom: custom
+        .filter(value => value !== undefined && value.episode !== undefined && value.name !== undefined )
+        .map(value => ({ episode: value.episode, content: value.name } as any)),
+      message: message
+        .filter(value => value !== undefined && value.content !== undefined && value.name !== undefined)
+        .map(value => value as any),
+    };
+    
     dispatch(changeVote(res));
     onNextStep();
   }
@@ -38,16 +47,14 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
   return (
     <div>
       <Typography className={classes.typo}>
-        당신의 손으로 '전직 프로듀서 출신 아이돌'을 만들고 싶은 그분은 누구?!
+        아래는 쓰고 싶으신 분들만 작성해주세요~
       </Typography>
       <Typography className={classes.typo}>
-        당신에게 주어진 명함은 총 3장입니다. 그중 1장만 쓸 수도 있고, 3장을 모두 쓸 수도 있습니다-
-      </Typography>
-      <Typography className={classes.typo}>
-        <b>유닛 투표 불가, 명예프로듀서 투표 불가.</b>
+        <b>답변 스킵 가능</b>
       </Typography>
       <Divider className={classes.divider} />
       <CustomVoteCard defaultValue={vote.custom} onChange={setCustom} />
+      <MessageVoteCard defaultValue={vote.message} onChange={setMessage} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전

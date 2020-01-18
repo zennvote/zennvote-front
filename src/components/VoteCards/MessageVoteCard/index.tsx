@@ -6,12 +6,12 @@ import axios from 'axios';
 import Vote from './Vote';
 import VoteElement from './VoteElement';
 
-interface CustomVoteCardProps {
+interface MessageVoteCardProps {
   defaultValue?: Vote[] | undefined;
   onChange: (values: Vote[]) => void;
 }
 
-const CustomVoteCard: FC<CustomVoteCardProps> = ({ defaultValue, onChange }) => {
+const MessageVoteCard: FC<MessageVoteCardProps> = ({ defaultValue, onChange }) => {
   const classes = styles();
   const [values, setValues] = useState<Vote[]>(defaultValue?.concat({}) ?? [{}]);
 
@@ -25,9 +25,9 @@ const CustomVoteCard: FC<CustomVoteCardProps> = ({ defaultValue, onChange }) => 
 
     const lastValue = temp[values.length-1];
 
-    temp = temp.filter((value, index) => value?.episode?.index || value?.episode?.index || value.name || index === temp.length-1 );
+    temp = temp.filter((value, index) => value?.name || value?.content || index === temp.length-1 );
 
-    if (lastValue.episode?.episode && lastValue.episode?.index && lastValue.name)
+    if (lastValue.content && lastValue.name)
       temp = temp.concat({});
 
     setValues(temp);
@@ -54,4 +54,4 @@ const CustomVoteCard: FC<CustomVoteCardProps> = ({ defaultValue, onChange }) => 
   )
 };
 
-export default CustomVoteCard;
+export default MessageVoteCard;

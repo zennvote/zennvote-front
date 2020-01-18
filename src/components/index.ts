@@ -22,6 +22,7 @@ import CustomVoteCard from './VoteCards/CustomVoteCard';
 
 import EpisodeVotePolls from './VotePolls/EpisodeVotePolls';
 import SelectVotePolls from './VotePolls/SelectVotePolls';
+import MessageVoteCard from './VoteCards/MessageVoteCard';
 
 export {
   MainAppBar,
@@ -45,6 +46,7 @@ export {
   UnitVoteCard,
   MasterVoteCard,
   CustomVoteCard,
+  MessageVoteCard,
   
   EpisodeVotePolls,
   SelectVotePolls,
