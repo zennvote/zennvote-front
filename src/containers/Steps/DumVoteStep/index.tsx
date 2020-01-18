@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeVote } from '../../../store/modules/vote';
 import { RootState } from '../../../store/modules';
 import { useSnackbar } from 'notistack';
-import { CustomVoteCard, MessageVoteCard } from '../../../components';
+import { CustomVoteCard, MessageVoteCard, SuggestionVoteCard } from '../../../components';
 import CustomVote from '../../../components/VoteCards/CustomVoteCard/Vote';
 import MessageVote from '../../../components/VoteCards/MessageVoteCard/Vote';
 
@@ -22,6 +22,7 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [custom, setCustom] = useState<CustomVote[]>([]);
   const [message, setMessage] = useState<MessageVote[]>([]);
+  const [suggestion, setSuggestion] = useState<string>('');
 
   useEffect(() => {
     if (vote.custom)
@@ -38,6 +39,7 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
       message: message
         .filter(value => value !== undefined && value.content !== undefined && value.name !== undefined)
         .map(value => value as any),
+      suggestion,
     };
     
     dispatch(changeVote(res));
@@ -55,6 +57,7 @@ const DumVoteStep: FC<DumVoteStepProps> = ({ onPrevStep, onNextStep }) => {
       <Divider className={classes.divider} />
       <CustomVoteCard defaultValue={vote.custom} onChange={setCustom} />
       <MessageVoteCard defaultValue={vote.message} onChange={setMessage} />
+      <SuggestionVoteCard value={suggestion} onChanged={setSuggestion} />
       <div className={classes.actionRoot}>
         <Button className={classes.button} variant="contained" color="default" onClick={() => onPrevStep()}>
           이전

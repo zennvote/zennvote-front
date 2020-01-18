@@ -37,11 +37,14 @@ const MessageVoteCard: FC<MessageVoteCardProps> = ({ defaultValue, onChange }) =
     <Card className={classes.card}>
       <CardContent className={classes.root}>
         <Typography variant="h5" component="h2" className={classes.title}>
-          <b>내가 주고싶은 상</b>
+          <b>프로듀서님께 하고싶은 말</b>
         </Typography>
         <Typography className={classes.typo}>
-          직접 수상하고 싶은 상 부문과 수상자가 있다면 적어주세요.
-          <br /> 재미있는 아이디어가 있다면 소개하겠습니다.
+          노래자랑에 출연한 프로듀서님께 하고싶은 말이 있다면 적어주세요.
+          <br />자기의 닉을 밝혀도 되고 익명도 됩니다.
+        </Typography>
+        <Typography className={classes.typo}>
+          ※ 여러 명에게 쓸 시 메시지마다 누가 썼는지 반복해서 닉을 쓰지 않으면 익명처리됩니다.
         </Typography>
         <Divider className={classes.divider} />
         <div className={classes.selectRoot}>
