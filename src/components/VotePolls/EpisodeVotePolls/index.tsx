@@ -102,7 +102,7 @@ const EpisodeVotePolls: FC<EpisodeVotePollsProps> = ({ count, defaultValue, onCh
       <div className={classes.buttonRoot}>
         <div className={classes.buttonWrapper}>
           <Button className={classes.button} variant="contained" color="primary" onClick={() => handleConfirm()} disabled={isLoading}>
-            회차 정보 조회
+            적용
           </Button>
           { isLoading && <CircularProgress size={24} className={classes.progress} /> }
         </div>

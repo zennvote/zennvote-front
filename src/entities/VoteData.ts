@@ -14,8 +14,8 @@ export interface VoteData {
     grow?: string[];           //성장 상
     master?: string[];       //대 상
     custom?: {              //내가 주고 싶은 상
-        episode: EpisodeData;    // n회 m번째
-        content: string;    // 상 이름
+        episode: { episode?: number, index?: number };    // n회 m번째
+        content?: string;    // 상 이름
     }[];
     message?: {             //메시지
         name: string;       //받는 분

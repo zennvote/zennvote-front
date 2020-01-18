@@ -8,6 +8,7 @@ import FieldVoteStep from "./Steps/FieldVoteStep";
 import PopVoteStep from "./Steps/PopVoteStep";
 import MasterVoteStep from "./Steps/MasterVoteStep";
 import ConfirmStep from "./Steps/ConfirmStep";
+import DumVoteStep from "./Steps/DumVoteStep";
 
 export {
   MainDrawer,
@@ -19,5 +20,6 @@ export {
   FieldVoteStep,
   PopVoteStep,
   MasterVoteStep,
+  DumVoteStep,
   ConfirmStep,
 }

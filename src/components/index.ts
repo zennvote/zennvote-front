@@ -18,6 +18,7 @@ import RookieVoteCard from './VoteCards/RookieVoteCard';
 import GrowVoteCard from './VoteCards/GrowVoteCard';
 import UnitVoteCard from './VoteCards/UnitVoteCard';
 import MasterVoteCard from './VoteCards/MasterVoteCard';
+import CustomVoteCard from './VoteCards/CustomVoteCard';
 
 import EpisodeVotePolls from './VotePolls/EpisodeVotePolls';
 import SelectVotePolls from './VotePolls/SelectVotePolls';
@@ -43,6 +44,7 @@ export {
   GrowVoteCard,
   UnitVoteCard,
   MasterVoteCard,
+  CustomVoteCard,
   
   EpisodeVotePolls,
   SelectVotePolls,

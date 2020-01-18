@@ -31,7 +31,7 @@ const OriginalVoteCard: FC<OriginalVoteCardProps> = ({ onChange, defaultValue })
           <b>타부문과 중복투표 불가</b>
         </Typography>
         <Divider className={classes.divider}/>
-        <EpisodeVotePolls count={5} defaultValue={defaultValue} onChange={onChange} />
+        <EpisodeVotePolls count={3} defaultValue={defaultValue} onChange={onChange} />
       </CardContent>
     </Card>
   )
